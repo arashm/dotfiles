@@ -264,23 +264,13 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 
 " CtrlP
-" Use Ag over Grep
-set grepprg=ag\ --nogroup\ --nocolor
 " Make Ctrl-p plugin to always search the root path
 let g:ctrlp_working_path_mode = 'r'
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
+" Use ripgrep over Grep
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
-
-  " bind leader-g to Ag shortcut
-  nmap <silent> <leader>/ :Ag<SPACE>
 endif
 
 " make vim-bufferline to not print to statusline as well
