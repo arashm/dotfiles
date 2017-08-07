@@ -43,7 +43,6 @@ Plug 'gcmt/wildfire.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'kchmck/vim-coffee-script'
-Plug 'jaawerth/neomake-local-eslint-first'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-markdown'
