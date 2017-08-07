@@ -1,0 +1,7 @@
+/tags
+node_modules
+TEMP~*
+.NERDTreeBookmarks
+.agignore
+/.yardoc
+
