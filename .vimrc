@@ -31,7 +31,6 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sheerun/vim-polyglot'
 Plug 'daylerees/colour-schemes'
-Plug 'rking/ag.vim'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -260,8 +259,8 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:gutentags_cache_dir = '~/.tags_cache'
 " make editor config play well with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-" Configurae ack
-let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+" Configure Ack.vim to use ripgrep
+let g:ackprg = 'rg --vimgrep --no-heading'
 
 " CtrlP
 " Make Ctrl-p plugin to always search the root path
