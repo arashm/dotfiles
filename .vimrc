@@ -1,6 +1,3 @@
-" Specify a directory for plugins
-" " - For Neovim: ~/.local/share/nvim/plugged
-" " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -133,7 +130,9 @@ colorschem solarized
 " Set leader (NOTICE: The leader is not selected in a democratic election)
 let mapleader = ','
 
+"
 " Mappings
+"
 
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -146,6 +145,93 @@ vnoremap . :normal .<CR>
 " Easier horizontal scrolling
 map zl zL
 map zh zH
+
+" remap up and down so that they don't jump past wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" Show buffer list with Ctrl-P
+nmap <leader>b :CtrlPBuffer<CR>
+nmap <leader>z :CtrlPFunky<CR>
+
+" Custom alignments with Tabularize
+nmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
+
+" Show buffer list with Ctrl-P
+nmap <leader>b :CtrlPBuffer<CR>
+nmap <leader>z :CtrlPFunky<CR>
+
+" Formating code using vim-autoformat
+nmap <Leader>f :Autoformat<CR>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Sudo when root access is required
+cnoremap w!! %!sudo tee > /dev/null %
+
+" Vim rspec custom commands
+nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader><Leader>l :call RunLastSpec()<CR>
+nnoremap <Leader>a :call RunAllSpecs()<CR>
+
+" Tagbar
+map <C-\> :TagbarToggle<CR>
+
+" Buffers
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>T :enew<cr>
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap x :bp <BAR> bd #<CR>
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
+
+" Simpler move around windows -> Alt + UpArrow
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+" Tabularize
+nmap <Leader>a& :Tabularize /&<CR>
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+nmap <Leader>a=> :Tabularize /=><CR>
+vmap <Leader>a=> :Tabularize /=><CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a,, :Tabularize /,\zs<CR>
+vmap <Leader>a,, :Tabularize /,\zs<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+nmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
+
+" Fugitive
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gr :Gread<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
+" Mnemonic _i_nteractive
+nnoremap <silent> <leader>gi :Git add -p %<CR>
+nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
@@ -182,14 +268,6 @@ let g:gutentags_cache_dir = '~/.tags_cache'
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " Configurae ack
 let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-
-" remap up and down so that they don't jump past wrapped lines
-nnoremap j gj
-nnoremap k gk
-
-" Show buffer list with Ctrl-P
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>z :CtrlPFunky<CR>
 
 " CtrlP
 " Use Ag over Grep
@@ -242,29 +320,6 @@ endfunction
 autocmd BufEnter * :call BookmarkMapKeys()
 autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()" vim-rspec mappings
 
-" remap up and down so that they don't jump past wrapped lines
-nnoremap j gj
-nnoremap k gk
-
-" Custom alignments with Tabularize
-nmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
-
-" Show buffer list with Ctrl-P
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>z :CtrlPFunky<CR>
-
-" Formating code using vim-autoformat
-nmap <Leader>f :Autoformat<CR>
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
-" Sudo when root access is required
-cnoremap w!! %!sudo tee > /dev/null %
-
 " Make those debugger statements painfully obvious
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
 au BufEnter *.js syn match error contained "\<console.log\>"
@@ -276,35 +331,6 @@ au BufEnter *.js syn match error contained "\<debugger\>"
 let g:VtrPercentage = 25
 let g:VtrOrientation = "v"
 let g:rspec_command = "VtrSendCommandToRunner! bundle exec bin/rspec {spec}"
-
-" Vim rspec custom commands
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader><Leader>l :call RunLastSpec()<CR>
-nnoremap <Leader>a :call RunAllSpecs()<CR>
-
-" Tagbar
-map <C-\> :TagbarToggle<CR>
-
-" Buffers
-" To open a new empty buffer
-" This replaces :tabnew which I used to bind to this mapping
-nmap <leader>T :enew<cr>
-" Move to the next buffer
-nmap <leader>l :bnext<CR>
-" Move to the previous buffer
-nmap <leader>h :bprevious<CR>
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
-nmap x :bp <BAR> bd #<CR>
-" Show all open buffers and their status
-nmap <leader>bl :ls<CR>
-
-" Simpler move around windows -> Alt + UpArrow
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
 
 " Make vim work fine with tmux
 if &term =~ '^screen'
@@ -330,37 +356,6 @@ let g:wildfire_objects = {
       \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
       \ "html,xml" : ["at"],
       \ }
-
-" Tabularize
-nmap <Leader>a& :Tabularize /&<CR>
-vmap <Leader>a& :Tabularize /&<CR>
-nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-nmap <Leader>a=> :Tabularize /=><CR>
-vmap <Leader>a=> :Tabularize /=><CR>
-nmap <Leader>a: :Tabularize /:<CR>
-vmap <Leader>a: :Tabularize /:<CR>
-nmap <Leader>a:: :Tabularize /:\zs<CR>
-vmap <Leader>a:: :Tabularize /:\zs<CR>
-nmap <Leader>a, :Tabularize /,<CR>
-vmap <Leader>a, :Tabularize /,<CR>
-nmap <Leader>a,, :Tabularize /,\zs<CR>
-vmap <Leader>a,, :Tabularize /,\zs<CR>
-nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-nmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
-
-" Fugitive
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gr :Gread<CR>
-nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>ge :Gedit<CR>
-" Mnemonic _i_nteractive
-nnoremap <silent> <leader>gi :Git add -p %<CR>
-nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
 " Indet Guides
 let g:indent_guides_start_level = 2
@@ -421,9 +416,9 @@ function! InitializeDirectories()
 endfunction
 call InitializeDirectories()
 
-"###
-"###### Lightline configs
-"###
+"
+" Lightline configs
+"
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
@@ -566,4 +561,4 @@ endfunction
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
-"### /Lightline config
+" /Lightline config
