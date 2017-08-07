@@ -125,7 +125,7 @@ set showtabline=2 " Always show the Tabline
 
 " Beautiful colors
 color solarized
-colorschem solarized
+colorscheme solarized
 
 " Set leader (NOTICE: The leader is not selected in a democratic election)
 let mapleader = ','
