@@ -75,6 +75,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Initialize plugin system
 call plug#end()
 
+set shell=/usr/bin/zsh " Make zsh the deafult shell
 set background=dark
 set t_Co=16
 set shiftwidth=2
@@ -126,6 +127,10 @@ set laststatus=2
 set noautochdir
 set showtabline=2 " Always show the Tabline
 
+" Beautiful colors
+color solarized
+colorschem solarized
+
 " Set leader (NOTICE: The leader is not selected in a democratic election)
 let mapleader = ','
 
@@ -163,13 +168,14 @@ let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
 let g:NERDCompactSexyComs = 1 " Use compact syntax for prettified multi-line comments
 let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 
+" NeoMake
 let g:neomake_elixir_mix_maker = {
       \ 'exe' : 'mix',
       \ 'args': ['compile', '--warnings-as-errors'],
       \ 'cwd': getcwd(),
       \ 'errorformat':
-        \ '** %s %f:%l: %m,' .
-        \ '%f:%l: warning: %m'
+      \ '** %s %f:%l: %m,' .
+      \ '%f:%l: warning: %m'
       \ }
 let g:neomake_elixir_enabled_makers = ['mix']
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -216,10 +222,6 @@ if executable('ag')
   nmap <silent> <leader>/ :Ag<SPACE>
 endif
 
-" Beautiful colors
-let g:solarized_termcolors=16
-color solarized
-
 " make vim-bufferline to not print to statusline as well
 let g:bufferline_echo = 0
 " Fix syntax highlighting of Ruby RegEx
@@ -231,22 +233,22 @@ set re=1
 " disable vim-bookmark when opening nerdtree
 let g:bookmark_no_default_key_mappings = 1
 function! BookmarkMapKeys()
-    nmap mm :BookmarkToggle<CR>
-    nmap mi :BookmarkAnnotate<CR>
-    nmap mn :BookmarkNext<CR>
-    nmap mp :BookmarkPrev<CR>
-    nmap ma :BookmarkShowAll<CR>
-    nmap mc :BookmarkClear<CR>
-    nmap mx :BookmarkClearAll<CR>
+  nmap mm :BookmarkToggle<CR>
+  nmap mi :BookmarkAnnotate<CR>
+  nmap mn :BookmarkNext<CR>
+  nmap mp :BookmarkPrev<CR>
+  nmap ma :BookmarkShowAll<CR>
+  nmap mc :BookmarkClear<CR>
+  nmap mx :BookmarkClearAll<CR>
 endfunction
 function! BookmarkUnmapKeys()
-    unmap mm
-    unmap mi
-    unmap mn
-    unmap mp
-    unmap ma
-    unmap mc
-    unmap mx
+  unmap mm
+  unmap mi
+  unmap mn
+  unmap mp
+  unmap ma
+  unmap mc
+  unmap mx
 endfunction
 autocmd BufEnter * :call BookmarkMapKeys()
 autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()" vim-rspec mappings
@@ -282,41 +284,30 @@ au BufEnter *.rb syn match error contained "\<debugger\>"
 au BufEnter *.js syn match error contained "\<debugger\>"
 
 " Vim tmux runner
-" I don't want the default key mappings
-" let g:VtrUseVtrMaps = 0
 let g:VtrPercentage = 25
 let g:VtrOrientation = "v"
 let g:rspec_command = "VtrSendCommandToRunner! bundle exec bin/rspec {spec}"
 
-"autocmd VimEnter * VtrAttachToPane
 " Vim rspec custom commands
 nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader><Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 
-" Make zsh the deafult shell
-set shell=/usr/bin/zsh
-
-" ###
-" ####### Mappings
-" ###
+" Tagbar
 map <C-\> :TagbarToggle<CR>
 
+" Buffers
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
 nmap <leader>T :enew<cr>
-
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
-
 " Move to the previous buffer
 nmap <leader>h :bprevious<CR>
-
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap x :bp <BAR> bd #<CR>
-
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
@@ -326,13 +317,13 @@ nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
-" Make vim work correctly with tmux
+" Make vim work fine with tmux
 if &term =~ '^screen'
-    " tmux will send xterm-style keys when its xterm-keys option is on
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
+  " tmux will send xterm-style keys when its xterm-keys option is on
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
 endif
 
 " Set syntax highlight for Thor files to Ruby
@@ -347,9 +338,9 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 " Wildfire
 let g:wildfire_objects = {
-						\ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
-						\ "html,xml" : ["at"],
-						\ }
+      \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
+      \ "html,xml" : ["at"],
+      \ }
 
 " Tabularize
 nmap <Leader>a& :Tabularize /&<CR>
@@ -392,52 +383,52 @@ function TrimWhiteSpace()
   %s/\s*$//
   ''
 endfunction
-
-" set list listchars=trail:.,extends:>
 autocmd FileWritePre * call TrimWhiteSpace()
 autocmd FileAppendPre * call TrimWhiteSpace()
 autocmd FilterWritePre * call TrimWhiteSpace()
 autocmd BufWritePre * call TrimWhiteSpace()
 
 " Functions
+" Instead of making all backup and temp files in the same directory, move them
+" to home.
 function! InitializeDirectories()
-		let parent = $HOME
-		let prefix = 'vim'
-		let dir_list = {
-								\ 'backup': 'backupdir',
-								\ 'views': 'viewdir',
-								\ 'swap': 'directory' }
+  let parent = $HOME
+  let prefix = 'vim'
+  let dir_list = {
+        \ 'backup': 'backupdir',
+        \ 'views': 'viewdir',
+        \ 'swap': 'directory' }
 
-		if has('persistent_undo')
-				let dir_list['undo'] = 'undodir'
-		endif
+  if has('persistent_undo')
+    let dir_list['undo'] = 'undodir'
+  endif
 
-		" To specify a different directory in which to place the vimbackup,
-		" vimviews, vimundo, and vimswap files/directories, add the following to
-		" your .vimrc.before.local file:
-		"   let g:spf13_consolidated_directory = <full path to desired directory>
-		"   eg: let g:spf13_consolidated_directory = $HOME . '/.vim/'
-		if exists('g:spf13_consolidated_directory')
-				let common_dir = g:spf13_consolidated_directory . prefix
-		else
-				let common_dir = parent . '/.' . prefix
-		endif
+  " To specify a different directory in which to place the vimbackup,
+  " vimviews, vimundo, and vimswap files/directories, add the following to
+  " your .vimrc.before.local file:
+  "   let g:spf13_consolidated_directory = <full path to desired directory>
+  "   eg: let g:spf13_consolidated_directory = $HOME . '/.vim/'
+  if exists('g:spf13_consolidated_directory')
+    let common_dir = g:spf13_consolidated_directory . prefix
+  else
+    let common_dir = parent . '/.' . prefix
+  endif
 
-		for [dirname, settingname] in items(dir_list)
-				let directory = common_dir . dirname . '/'
-				if exists("*mkdir")
-						if !isdirectory(directory)
-								call mkdir(directory)
-						endif
-				endif
-				if !isdirectory(directory)
-						echo "Warning: Unable to create backup directory: " . directory
-						echo "Try: mkdir -p " . directory
-				else
-						let directory = substitute(directory, " ", "\\\\ ", "g")
-						exec "set " . settingname . "=" . directory
-				endif
-		endfor
+  for [dirname, settingname] in items(dir_list)
+    let directory = common_dir . dirname . '/'
+    if exists("*mkdir")
+      if !isdirectory(directory)
+        call mkdir(directory)
+      endif
+    endif
+    if !isdirectory(directory)
+      echo "Warning: Unable to create backup directory: " . directory
+      echo "Try: mkdir -p " . directory
+    else
+      let directory = substitute(directory, " ", "\\\\ ", "g")
+      exec "set " . settingname . "=" . directory
+    endif
+  endfor
 endfunction
 call InitializeDirectories()
 
@@ -450,10 +441,10 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], ['ctrlpmark']],
       \   'right': [ ['lineinfo' ], ['percent'], [ 'fileformat', 'filetype', 'neomake_errors', 'neomake_warnings' ] ]
       \ },
-			\ 'tabline': {
-			\ 	'left': [ ['bufferline'] ],
-			\ 	'right': [['fileencoding']]
-			\	},
+      \ 'tabline': {
+      \   'left': [ ['bufferline'] ],
+      \   'right': [['fileencoding']]
+      \ },
       \ 'component_function': {
       \   'fugitive': 'LightLineFugitive',
       \   'filename': 'LightLineFilename',
@@ -478,7 +469,7 @@ endfunction
 
 function! LightlineBufferline()
   call bufferline#refresh_status()
-	return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
+  return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
   " return '%{bufferline#refresh_status()}%{g:bufferline_status_info.before}%#TabLineSel#%{g:bufferline_status_info.current}%#LightLineLeft_active_2#%{g:bufferline_status_info.after}'
 endfunction
 
@@ -547,9 +538,9 @@ function! CtrlPMark()
 endfunction
 
 let g:ctrlp_status_func = {
-  \ 'main': 'CtrlPStatusFunc_1',
-  \ 'prog': 'CtrlPStatusFunc_2',
-  \ }
+      \ 'main': 'CtrlPStatusFunc_1',
+      \ 'prog': 'CtrlPStatusFunc_2',
+      \ }
 
 function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
   let g:lightline.ctrlp_regex = a:regex
@@ -566,7 +557,7 @@ endfunction
 let g:tagbar_status_func = 'TagbarStatusFunc'
 
 function! TagbarStatusFunc(current, sort, fname, ...) abort
-    let g:lightline.fname = a:fname
+  let g:lightline.fname = a:fname
   return lightline#statusline(0)
 endfunction
 
