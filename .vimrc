@@ -35,14 +35,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'sheerun/vim-polyglot'
 Plug 'daylerees/colour-schemes'
 Plug 'rking/ag.vim'
-Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-endwise'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'itchyny/lightline.vim'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'gcmt/wildfire.vim'
 " JavaScript
@@ -55,6 +54,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-markdown'
 Plug 'alvan/vim-closetag'
 Plug 'ap/vim-css-color'
+Plug 'slim-template/vim-slim'
 " Ruby
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
@@ -168,17 +168,7 @@ let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
 let g:NERDCompactSexyComs = 1 " Use compact syntax for prettified multi-line comments
 let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 
-" NeoMake
-let g:neomake_elixir_mix_maker = {
-      \ 'exe' : 'mix',
-      \ 'args': ['compile', '--warnings-as-errors'],
-      \ 'cwd': getcwd(),
-      \ 'errorformat':
-      \ '** %s %f:%l: %m,' .
-      \ '%f:%l: warning: %m'
-      \ }
-let g:neomake_elixir_enabled_makers = ['mix']
-let g:neomake_javascript_enabled_makers = ['eslint']
+" Close tag
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js"
 
 " Force UltiSnips to call python 2
@@ -438,8 +428,8 @@ call InitializeDirectories()
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], ['ctrlpmark']],
-      \   'right': [ ['lineinfo' ], ['percent'], [ 'fileformat', 'filetype', 'neomake_errors', 'neomake_warnings' ] ]
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], ['ctrlpmark'] ],
+      \   'right': [ ['lineinfo' ], ['percent'], [ 'fileformat', 'filetype' ], ['linter_status'] ]
       \ },
       \ 'tabline': {
       \   'left': [ ['bufferline'] ],
@@ -561,18 +551,17 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
   return lightline#statusline(0)
 endfunction
 
-function! LightLineNeomakeErrors()
-  if !exists(":Neomake") || ((get(neomake#statusline#QflistCounts(), "E", 0) + get(neomake#statusline#LoclistCounts(), "E", 0)) == 0)
-    return ''
-  endif
-  return 'E:'.(get(neomake#statusline#LoclistCounts(), 'E', 0) + get(neomake#statusline#QflistCounts(), 'E', 0))
-endfunction
+function! LightLineLinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
 
-function! LightLineNeomakeWarnings()
-  if !exists(":Neomake") || ((get(neomake#statusline#QflistCounts(), "W", 0) + get(neomake#statusline#LoclistCounts(), "W", 0)) == 0)
-    return ''
-  endif
-  return 'W:'.(get(neomake#statusline#LoclistCounts(), 'W', 0) + get(neomake#statusline#QflistCounts(), 'W', 0))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
 endfunction
 
 let g:unite_force_overwrite_statusline = 0
