@@ -125,6 +125,11 @@ set showtabline=2 " Always show the Tabline
 color solarized
 colorscheme solarized
 
+" Better more visible indentation guides
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=23
+
 " Set leader (NOTICE: The leader is not selected in a democratic election)
 let mapleader = ','
 
