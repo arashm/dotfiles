@@ -351,8 +351,10 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 " Removes trailing spaces
 function TrimWhiteSpace()
+  let l:save = winsaveview()
   %s/\s*$//
   ''
+  call winrestview(l:save)
 endfunction
 autocmd FileWritePre * call TrimWhiteSpace()
 autocmd FileAppendPre * call TrimWhiteSpace()
