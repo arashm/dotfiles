@@ -157,13 +157,6 @@ nnoremap k gk
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>z :CtrlPFunky<CR>
 
-" Custom alignments with Tabularize
-nmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
-
-" Show buffer list with Ctrl-P
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>z :CtrlPFunky<CR>
-
 " Formating code using vim-autoformat
 nmap <Leader>f :Autoformat<CR>
 
@@ -250,6 +243,10 @@ let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
 let g:NERDCompactSexyComs = 1 " Use compact syntax for prettified multi-line comments
 let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 
+" Rust Racer
+let g:racer_cmd = "/home/arashm/.cargo/bin/racer"
+let g:racer_experimental_completer = 1 " Experimental completion
+
 " Close tag
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js"
 
@@ -260,7 +257,7 @@ let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " gutentags_cache_dir
-let g:gutentags_cache_dir = '~/.tags_cache'
+let g:gutentags_cache_dir = '/home/arashm/.tags_cache'
 " make editor config play well with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " Configure Ack.vim to use ripgrep
