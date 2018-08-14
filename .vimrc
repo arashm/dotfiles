@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --rust-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -37,18 +37,20 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
-Plug 'ludovicchabant/vim-gutentags'
+" This really slows down vim. Have to find a better alternative.
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'gcmt/wildfire.vim'
 " JavaScript
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'kchmck/vim-coffee-script'
+Plug 'posva/vim-vue'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-markdown'
 Plug 'alvan/vim-closetag'
-Plug 'ap/vim-css-color'
 Plug 'slim-template/vim-slim'
+Plug 'othree/html5.vim'
 " Ruby
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
@@ -65,6 +67,7 @@ Plug 'rust-lang/rust.vim'
 " Misc
 Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'moll/vim-bbye'
 
 " Initialize plugin system
 call plug#end()
@@ -130,6 +133,9 @@ let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=23
 
+" This speeds up stuff in vue files
+let g:vue_disable_pre_processors=1
+
 " Set leader (NOTICE: The leader is not selected in a democratic election)
 let mapleader = ','
 
@@ -189,8 +195,7 @@ nmap <leader>h :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap x :bp <BAR> bd #<CR>
-" Show all open buffers and their status
-nmap <leader>bl :ls<CR>
+nnoremap <Leader>q :Bdelete<CR>
 
 " Tabularize
 nmap <Leader>a& :Tabularize /&<CR>
@@ -234,8 +239,8 @@ let NERDTreeKeepTreeInNewTab=1
 let g:nerdtree_tabs_open_on_gui_startup=0
 " Project based bookmarks for nerdtree. only works if you always open vim
 " in the folder that .NERDTreeBookmarks is located
-if filereadable(".NERDTreeBookmarks")
-  let g:NERDTreeBookmarksFile = ".NERDTreeBookmarks"
+if filereadable($PWD . "/.NERDTreeBookmarks")
+  let g:NERDTreeBookmarksFile = $PWD . "/.NERDTreeBookmarks"
 endif
 
 " NERD Commenter
@@ -279,7 +284,7 @@ let g:bufferline_echo = 0
 set re=1
 
 " Map localleader
-:let maplocalleader = "-"
+let maplocalleader = "-"
 
 " disable vim-bookmark when opening nerdtree
 let g:bookmark_no_default_key_mappings = 1
@@ -341,7 +346,7 @@ let g:wildfire_objects = {
       \ "html,xml" : ["at"],
       \ }
 
-" Indet Guides
+" Indent Guides
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
@@ -357,6 +362,12 @@ autocmd FileWritePre * call TrimWhiteSpace()
 autocmd FileAppendPre * call TrimWhiteSpace()
 autocmd FilterWritePre * call TrimWhiteSpace()
 autocmd BufWritePre * call TrimWhiteSpace()
+
+" ALE fixers
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\}
 
 " Functions
 " Instead of making all backup and temp files in the same directory, move them
