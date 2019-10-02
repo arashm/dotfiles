@@ -11,6 +11,8 @@ set -gx WORKON_HOME $HOME/.pyenvs
 set -gx GOPATH $HOME/.gocode
 set -gx PASSWORD_STORE_DIR $HOME/.config/password-store
 set -U FZF_TMUX 1
+set -gx ANDROID_HOME $HOME/Public/android_sdk/
+set -gx ANDROID_SDK_ROOT $HOME/Public/android_sdk/
 
 if status --is-interactive
   set -gx LANG en_US.utf8
@@ -18,7 +20,7 @@ if status --is-interactive
   set -gx LC_CTYPE en_US.utf8
 end
 
-set PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $GOPATH/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $PATH
+set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $HOME/Public/flutter/bin $PATH
 
 #
 ## Aliases #
@@ -45,6 +47,7 @@ alias pu='pacman -Syu --color=auto'
 alias y='pikaur'
 alias yss='pikaur -Ss'
 alias passf='pass clip --fzf'
+alias c='clear'
 
 status --is-interactive; and source (rbenv init -|psub)
 
@@ -52,7 +55,7 @@ status --is-interactive; and source (rbenv init -|psub)
 function fish_greeting
   # If not in tmux, then run tmux!
   #if test -z "$TMUX"
-    #tmux
+  #tmux
   #end
 
   figlet ArashM | glitchcat -d 300 -s 50

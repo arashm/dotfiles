@@ -1,7 +1,8 @@
+autocmd!
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --rust-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -11,13 +12,14 @@ Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-scripts/restore_view.vim'
-Plug 'mileszs/ack.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'osyo-manga/vim-over'
 Plug 'airblade/vim-gitgutter'
 Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-textobj-sentence'
 Plug 'reedes/vim-textobj-quote'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'reedes/vim-wordy'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -32,13 +34,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'sheerun/vim-polyglot'
 Plug 'daylerees/colour-schemes'
 Plug 'christoomey/vim-tmux-runner'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
-" This really slows down vim. Have to find a better alternative.
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'gcmt/wildfire.vim'
 " JavaScript
 Plug 'pangloss/vim-javascript'
@@ -52,10 +54,12 @@ Plug 'alvan/vim-closetag'
 Plug 'slim-template/vim-slim'
 Plug 'othree/html5.vim'
 " Ruby
+Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
+Plug 'sunaku/vim-ruby-minitest'
 " Elixir
 Plug 'elixir-lang/vim-elixir'
 Plug 'carlosgaldino/elixir-snippets'
@@ -68,8 +72,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
-
-" Initialize plugin system
 call plug#end()
 
 set shell=/usr/bin/zsh " Make zsh the deafult shell
@@ -123,6 +125,8 @@ set colorcolumn=80
 set laststatus=2
 set noautochdir
 set showtabline=2 " Always show the Tabline
+
+runtime macros/matchit.vim
 
 " Beautiful colors
 color solarized
@@ -261,12 +265,8 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-" gutentags_cache_dir
-let g:gutentags_cache_dir = '/home/arashm/.tags_cache'
 " make editor config play well with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-" Configure Ack.vim to use ripgrep
-let g:ackprg = 'rg --vimgrep --no-heading'
 
 " CtrlP
 " Make Ctrl-p plugin to always search the root path
@@ -330,16 +330,6 @@ if &term =~ '^screen'
   execute "set <xLeft>=\e[1;*D"
 endif
 
-" Set syntax highlight for Thor files to Ruby
-au BufRead,BufNewFile,BufReadPost *.thor set filetype=ruby
-au BufRead,BufNewFile,BufReadPost *.rabl set filetype=ruby
-au BufRead,BufNewFile,BufReadPost *.axlsx set filetype=ruby
-autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-
 " Wildfire
 let g:wildfire_objects = {
       \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
@@ -351,12 +341,37 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
+" ALE
+let g:ale_rust_rls_toolchain = 'stable'
+
+let g:ale_linters = {
+  \   'csh': ['shell'],
+  \   'elixir': ['credo'],
+  \   'rust': ['rls', 'cargo'],
+  \   'vue': ['eslint', 'vls'],
+  \   'ruby': ['solargraph', 'rubocop'],
+\}
+
 " ALE fixers
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
+\   'rust': ['rustfmt'],
 \}
+
+" Coc
+" grep word under cursor
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
+
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <Leader>cf :exe 'CocList -I --auto-preview --input='.expand('<cword>').' grep'<CR>
 
 " Functions
 " Instead of making all backup and temp files in the same directory, move them
@@ -378,11 +393,7 @@ function! InitializeDirectories()
   " your .vimrc.before.local file:
   "   let g:spf13_consolidated_directory = <full path to desired directory>
   "   eg: let g:spf13_consolidated_directory = $HOME . '/.vim/'
-  if exists('g:spf13_consolidated_directory')
-    let common_dir = g:spf13_consolidated_directory . prefix
-  else
-    let common_dir = parent . '/.' . prefix
-  endif
+  let common_dir = parent . '/.' . prefix
 
   for [dirname, settingname] in items(dir_list)
     let directory = common_dir . dirname . '/'
@@ -402,7 +413,6 @@ function! InitializeDirectories()
 endfunction
 call InitializeDirectories()
 
-"
 " Lightline configs
 "
 let g:lightline = {
