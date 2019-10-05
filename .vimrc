@@ -42,11 +42,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'gcmt/wildfire.vim'
-" JavaScript
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
-Plug 'kchmck/vim-coffee-script'
-Plug 'posva/vim-vue'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-markdown'
@@ -54,20 +49,17 @@ Plug 'alvan/vim-closetag'
 Plug 'slim-template/vim-slim'
 Plug 'othree/html5.vim'
 " Ruby
-Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 Plug 'sunaku/vim-ruby-minitest'
 " Elixir
-Plug 'elixir-lang/vim-elixir'
 Plug 'carlosgaldino/elixir-snippets'
 Plug 'c-brenn/phoenix.vim'
 Plug 'slashmili/alchemist.vim'
 " Rust
 Plug 'phildawes/racer'
-Plug 'rust-lang/rust.vim'
 " Misc
 Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim'
