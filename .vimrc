@@ -337,20 +337,20 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_linters = {
-  \   'csh': ['shell'],
-  \   'elixir': ['credo'],
-  \   'rust': ['rls', 'cargo'],
-  \   'vue': ['eslint', 'vls'],
-  \   'ruby': ['solargraph', 'rubocop'],
-\}
+      \   'csh': ['shell'],
+      \   'elixir': ['credo'],
+      \   'rust': ['rls', 'cargo'],
+      \   'vue': ['eslint', 'vls'],
+      \   'ruby': ['solargraph', 'rubocop'],
+      \}
 
 " ALE fixers
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'ruby': ['rubocop'],
-\   'rust': ['rustfmt'],
-\}
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['eslint'],
+      \   'ruby': ['rubocop'],
+      \   'rust': ['rustfmt'],
+      \}
 
 " Coc
 " grep word under cursor
@@ -534,16 +534,16 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 function! LightLineLinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
+  let l:counts = ale#statusline#Count(bufnr(''))
 
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
+  return l:counts.total == 0 ? 'OK' : printf(
+        \   '%dW %dE',
+        \   all_non_errors,
+        \   all_errors
+        \)
 endfunction
 
 let g:unite_force_overwrite_statusline = 0
