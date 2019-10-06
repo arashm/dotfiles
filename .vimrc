@@ -46,8 +46,6 @@ Plug 'gcmt/wildfire.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-markdown'
 Plug 'alvan/vim-closetag'
-Plug 'slim-template/vim-slim'
-Plug 'othree/html5.vim'
 " Ruby
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
@@ -68,7 +66,7 @@ call plug#end()
 
 set shell=/usr/bin/zsh " Make zsh the deafult shell
 set background=dark
-set t_Co=16
+set t_Co=256
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
@@ -299,14 +297,14 @@ function! BookmarkUnmapKeys()
   unmap mx
 endfunction
 autocmd BufEnter * :call BookmarkMapKeys()
-autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()" vim-rspec mappings
+autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys() " vim-rspec mappings
 
 " Make those debugger statements painfully obvious
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
-au BufEnter *.js syn match error contained "\<console.log\>"
-au BufEnter *.coffee syn match error contained "\<console.log\>"
 au BufEnter *.rb syn match error contained "\<debugger\>"
+au BufEnter *.js syn match error contained "\<console\>"
 au BufEnter *.js syn match error contained "\<debugger\>"
+au BufEnter *.coffee syn match error contained "\<console\>"
 
 " Vim tmux runner
 let g:VtrPercentage = 25
@@ -351,6 +349,15 @@ let g:ale_fixers = {
       \   'ruby': ['rubocop'],
       \   'rust': ['rustfmt'],
       \}
+
+" Conflict Marker
+let g:conflict_marker_highlight_group = ''
+let g:conflict_marker_begin = '^<<<<<<< .*$'
+let g:conflict_marker_end   = '^>>>>>>> .*$'
+highlight ConflictMarkerBegin ctermbg=29
+highlight ConflictMarkerOurs ctermbg=23
+highlight ConflictMarkerTheirs ctermbg=24
+highlight ConflictMarkerEnd ctermbg=25
 
 " Coc
 " grep word under cursor
@@ -442,7 +449,6 @@ endfunction
 function! LightlineBufferline()
   call bufferline#refresh_status()
   return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
-  " return '%{bufferline#refresh_status()}%{g:bufferline_status_info.before}%#TabLineSel#%{g:bufferline_status_info.current}%#LightLineLeft_active_2#%{g:bufferline_status_info.after}'
 endfunction
 
 function! LightLineReadonly()
