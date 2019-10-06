@@ -5,7 +5,7 @@ set -gx EDITOR vim
 set -gx GEM_EDITOR vim
 set -gx LESSOPEN "| /usr/bin/src-hilite-lesspipe.sh %s"
 set -gx LESS ' -R '
-#set -gx TERM xterm-256color
+set -gx TERM xterm-256color
 set -gx RUST_SRC_PATH /home/arashm/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 set -gx WORKON_HOME $HOME/.pyenvs
 set -gx GOPATH $HOME/.gocode
