@@ -209,7 +209,6 @@ vmap <Leader>a,, :Tabularize /,\zs<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 nmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
-
 " Fugitive
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -332,6 +331,7 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
 " ALE
+nmap <Leader>g :ALEGoToDefinition<CR>
 let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_linters = {
