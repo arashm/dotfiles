@@ -3,7 +3,6 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
@@ -27,7 +26,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'bling/vim-bufferline'
 Plug 'godlygeek/tabular'
-Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -175,9 +173,6 @@ nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader><Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 
-" Tagbar
-map <C-\> :TagbarToggle<CR>
-
 " Buffers
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
@@ -247,12 +242,6 @@ let g:racer_experimental_completer = 1 " Experimental completion
 
 " Close tag
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js"
-
-" Force UltiSnips to call python 2
-let g:UltiSnipsUsePythonVersion=2
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " make editor config play well with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -529,13 +518,6 @@ function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
 endfunction
 
 function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
-endfunction
-
-let g:tagbar_status_func = 'TagbarStatusFunc'
-
-function! TagbarStatusFunc(current, sort, fname, ...) abort
-  let g:lightline.fname = a:fname
   return lightline#statusline(0)
 endfunction
 
