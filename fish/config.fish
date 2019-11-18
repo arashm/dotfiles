@@ -1,5 +1,4 @@
 source $HOME/.asdf/asdf.fish
-source /usr/share/autojump/autojump.fish
 
 set -gx EDITOR vim
 set -gx GEM_EDITOR vim
@@ -44,8 +43,8 @@ alias s='sudo'
 alias p='sudo pacman --color=auto'
 alias pss='pacman -Ss --color=auto'
 alias pu='pacman -Syu --color=auto'
-alias y='pikaur'
-alias yss='pikaur -Ss'
+alias y='yay'
+alias yss='yay -Ss'
 alias passf='pass clip --fzf'
 alias c='clear'
 
