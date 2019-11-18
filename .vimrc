@@ -3,6 +3,8 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
@@ -11,7 +13,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-scripts/restore_view.vim'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
+Plug 'Rigellute/rigel'
 Plug 'osyo-manga/vim-over'
 Plug 'airblade/vim-gitgutter'
 Plug 'reedes/vim-litecorrect'
@@ -40,6 +43,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'gcmt/wildfire.vim'
+Plug 'liuchengxu/vim-clap'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-markdown'
@@ -60,6 +64,7 @@ Plug 'phildawes/racer'
 Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 set shell=/usr/bin/zsh " Make zsh the deafult shell
@@ -77,6 +82,7 @@ filetype plugin indent on
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 scriptencoding utf-8
+set encoding=UTF-8
 set history=1000                    " Store a ton of history (default is 20)
 set spell                           " Spell checking on
 set hidden                          " Allow buffer switching without saving
@@ -89,8 +95,6 @@ set undolevels=1000         " Maximum number of changes that can be undone
 set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 set showmode                    " Display the current mode
 set cursorline                  " Highlight current line
-highlight clear SignColumn      " SignColumn should match background
-highlight clear LineNr          " Current line number row will have same background color in relative mode
 set backspace=indent,eol,start  " Backspace for dummies
 set showmatch                   " Show matching brackets/parenthesis
 set incsearch                   " Find as you type search
@@ -113,17 +117,30 @@ set colorcolumn=80
 set laststatus=2
 set noautochdir
 set showtabline=2 " Always show the Tabline
+" Fix syntax highlighting of Ruby RegEx
+set re=1
 
 runtime macros/matchit.vim
 
-" Beautiful colors
-color solarized
-colorscheme solarized
-
-" Better more visible indentation guides
+" Indent Guides
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=23
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+
+" enable 24bit true color
+set termguicolors
+" Beautiful colors
+color rigel
+colorscheme rigel
+hi clear SpellBad
+hi clear SpellCap
+hi clear SpellRare
+hi SpellBad cterm=underline,Bold
+hi link SpellCap SpellBad
+hi link SpellRare SpellBad
 
 " This speeds up stuff in vue files
 let g:vue_disable_pre_processors=1
@@ -236,10 +253,6 @@ let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
 let g:NERDCompactSexyComs = 1 " Use compact syntax for prettified multi-line comments
 let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 
-" Rust Racer
-let g:racer_cmd = "/home/arashm/.cargo/bin/racer"
-let g:racer_experimental_completer = 1 " Experimental completion
-
 " Close tag
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js"
 
@@ -258,8 +271,6 @@ endif
 
 " make vim-bufferline to not print to statusline as well
 let g:bufferline_echo = 0
-" Fix syntax highlighting of Ruby RegEx
-set re=1
 
 " Map localleader
 let maplocalleader = "-"
@@ -314,14 +325,11 @@ let g:wildfire_objects = {
       \ "html,xml" : ["at"],
       \ }
 
-" Indent Guides
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
-
 " ALE
 nmap <Leader>g :ALEGoToDefinition<CR>
 let g:ale_rust_rls_toolchain = 'stable'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
 
 let g:ale_linters = {
       \   'csh': ['shell'],
@@ -357,6 +365,12 @@ function! s:GrepArgs(...)
         \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
   return join(list, "\n")
 endfunction
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <Leader>cf :exe 'CocList -I --auto-preview --input='.expand('<cword>').' grep'<CR>
@@ -403,8 +417,9 @@ call InitializeDirectories()
 
 " Lightline configs
 "
+let g:rigel_lightline = 1
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'rigel',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], ['ctrlpmark'] ],
       \   'right': [ ['lineinfo' ], ['percent'], [ 'fileformat', 'filetype' ], ['linter_status'] ]
