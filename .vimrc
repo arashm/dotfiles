@@ -6,14 +6,11 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'honza/vim-snippets'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-scripts/restore_view.vim'
-" Plug 'altercation/vim-colors-solarized'
 Plug 'Rigellute/rigel'
 Plug 'osyo-manga/vim-over'
 Plug 'airblade/vim-gitgutter'
@@ -43,7 +40,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'gcmt/wildfire.vim'
-Plug 'liuchengxu/vim-clap'
+Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
+Plug 'liuchengxu/vista.vim'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-markdown'
@@ -147,6 +145,7 @@ let g:vue_disable_pre_processors=1
 
 " Set leader (NOTICE: The leader is not selected in a democratic election)
 let mapleader = ','
+let maplocalleader = "-"
 
 "
 " Mappings
@@ -168,11 +167,7 @@ map zh zH
 nnoremap j gj
 nnoremap k gk
 
-" Show buffer list with Ctrl-P
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>z :CtrlPFunky<CR>
-
-" Formating code using vim-autoformat
+" Formatting code using vim-autoformat
 nmap <Leader>f :Autoformat<CR>
 
 " Quicker window movement
@@ -221,6 +216,7 @@ vmap <Leader>a,, :Tabularize /,\zs<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 nmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
+
 " Fugitive
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -231,7 +227,13 @@ nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
 " Mnemonic _i_nteractive
 nnoremap <silent> <leader>gi :Git add -p %<CR>
-nnoremap <silent> <leader>gg :SignifyToggle<CR>
+
+" Clap
+nnoremap <C-p> :Clap files<CR>
+nnoremap <leader>g :Clap grep<CR>
+nnoremap <leader>gg :Clap grep ++query=<cword><CR>
+nnoremap <leader>b :Clap buffers<CR>
+nnoremap <leader>z :Clap tags<CR>
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
@@ -259,21 +261,8 @@ let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js"
 " make editor config play well with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" CtrlP
-" Make Ctrl-p plugin to always search the root path
-let g:ctrlp_working_path_mode = 'r'
-" Use ripgrep over Grep
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-endif
-
 " make vim-bufferline to not print to statusline as well
 let g:bufferline_echo = 0
-
-" Map localleader
-let maplocalleader = "-"
 
 " disable vim-bookmark when opening nerdtree
 let g:bookmark_no_default_key_mappings = 1
@@ -356,16 +345,6 @@ highlight ConflictMarkerOurs ctermbg=23
 highlight ConflictMarkerTheirs ctermbg=24
 highlight ConflictMarkerEnd ctermbg=25
 
-" Coc
-" grep word under cursor
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
-
-function! s:GrepArgs(...)
-  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
-        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
-  return join(list, "\n")
-endfunction
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -373,7 +352,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Keymapping for grep word under cursor with interactive mode
-nnoremap <silent> <Leader>cf :exe 'CocList -I --auto-preview --input='.expand('<cword>').' grep'<CR>
+" nnoremap <silent> <Leader>cf :exe 'CocList -I --auto-preview --input='.expand('<cword>').' grep'<CR>
 
 " Functions
 " Instead of making all backup and temp files in the same directory, move them
