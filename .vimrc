@@ -235,6 +235,10 @@ nnoremap <leader>gg :Clap grep ++query=<cword><CR>
 nnoremap <leader>b :Clap buffers<CR>
 nnoremap <leader>z :Clap tags<CR>
 
+" Remap moving in autocomplete popup
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
