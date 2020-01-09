@@ -40,7 +40,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'gcmt/wildfire.vim'
-Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
+Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') } " The callback needs Rust and Cargo to be available
 Plug 'liuchengxu/vista.vim'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
