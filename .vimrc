@@ -315,7 +315,8 @@ endif
 " Wildfire
 let g:wildfire_objects = {
       \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
-      \ "html,xml" : ["at"],
+      \ "html,xml" : ["i'", 'i"', "i)", "i]", "i}", "at", "it"],
+      \ "ruby" : ["i'", 'i"', "i)", "i]", "i}", "ir", "ar"],
       \ }
 
 " ALE
