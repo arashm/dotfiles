@@ -241,6 +241,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
+nmap <leader>n :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=1
@@ -320,7 +321,6 @@ let g:wildfire_objects = {
       \ }
 
 " ALE
-nmap <Leader>g :ALEGoToDefinition<CR>
 let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
