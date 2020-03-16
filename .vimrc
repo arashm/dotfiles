@@ -40,7 +40,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'gcmt/wildfire.vim'
-Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') } " The callback needs Rust and Cargo to be available
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " The callback needs Rust and Cargo to be available
 Plug 'liuchengxu/vista.vim'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
@@ -56,8 +56,6 @@ Plug 'sunaku/vim-ruby-minitest'
 Plug 'carlosgaldino/elixir-snippets'
 Plug 'c-brenn/phoenix.vim'
 Plug 'slashmili/alchemist.vim'
-" Rust
-Plug 'phildawes/racer'
 " Misc
 Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim'
@@ -236,6 +234,7 @@ nnoremap <leader>b :Clap buffers<CR>
 nnoremap <leader>z :Clap tags<CR>
 
 " Remap moving in autocomplete popup
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
 
@@ -328,9 +327,9 @@ let g:ale_sign_warning = ''
 let g:ale_linters = {
       \   'csh': ['shell'],
       \   'elixir': ['credo'],
-      \   'rust': ['rls', 'cargo'],
+      \   'rust': ['rls'],
       \   'vue': ['eslint', 'vls'],
-      \   'ruby': ['solargraph', 'rubocop'],
+      \   'ruby': ['rubocop'],
       \}
 
 " ALE fixers
