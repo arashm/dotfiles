@@ -1,5 +1,4 @@
 autocmd!
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -11,7 +10,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-scripts/restore_view.vim'
-Plug 'Rigellute/rigel'
 Plug 'osyo-manga/vim-over'
 Plug 'airblade/vim-gitgutter'
 Plug 'reedes/vim-litecorrect'
@@ -44,14 +42,12 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " The callback need
 Plug 'liuchengxu/vista.vim'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
-Plug 'tpope/vim-markdown'
 Plug 'alvan/vim-closetag'
 " Ruby
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
-Plug 'sunaku/vim-ruby-minitest'
 " Elixir
 Plug 'carlosgaldino/elixir-snippets'
 Plug 'c-brenn/phoenix.vim'
@@ -61,14 +57,19 @@ Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
 Plug 'ryanoasis/vim-devicons'
+" Theme
+Plug 'Rigellute/rigel'
+Plug 'wadackel/vim-dogrun'
+
+" Initialize plugin system
 call plug#end()
+
+runtime macros/matchit.vim
 
 set shell=/usr/bin/zsh " Make zsh the deafult shell
 set background=dark
 set t_Co=256
 set shiftwidth=2
-set tabstop=2
-set softtabstop=2
 set smartindent
 set relativenumber
 set number
@@ -115,9 +116,6 @@ set noautochdir
 set showtabline=2 " Always show the Tabline
 " Fix syntax highlighting of Ruby RegEx
 set re=1
-
-runtime macros/matchit.vim
-
 " Indent Guides
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  ctermbg=black
@@ -129,8 +127,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 " enable 24bit true color
 set termguicolors
 " Beautiful colors
-color rigel
-colorscheme rigel
+color dogrun
+colorscheme dogrun
+let g:clap_theme = 'dogrun'
 hi clear SpellBad
 hi clear SpellCap
 hi clear SpellRare
@@ -166,13 +165,21 @@ nnoremap j gj
 nnoremap k gk
 
 " Formatting code using vim-autoformat
-nmap <Leader>f :Autoformat<CR>
+nmap <Leader>f :ALEFix<CR>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" Move lines up and down using ALT+j/k
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Sudo when root access is required
 cnoremap w!! %!sudo tee > /dev/null %
@@ -195,6 +202,7 @@ nmap <leader>h :bprevious<CR>
 " This replicates the idea of closing a tab
 nmap x :bp <BAR> bd #<CR>
 nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>v :vsp<CR>
 
 " Tabularize
 nmap <Leader>a& :Tabularize /&<CR>
@@ -205,8 +213,6 @@ nmap <Leader>a=> :Tabularize /=><CR>
 vmap <Leader>a=> :Tabularize /=><CR>
 nmap <Leader>a: :Tabularize /:<CR>
 vmap <Leader>a: :Tabularize /:<CR>
-nmap <Leader>a:: :Tabularize /:\zs<CR>
-vmap <Leader>a:: :Tabularize /:\zs<CR>
 nmap <Leader>a, :Tabularize /,<CR>
 vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a,, :Tabularize /,\zs<CR>
@@ -225,18 +231,24 @@ nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
 " Mnemonic _i_nteractive
 nnoremap <silent> <leader>gi :Git add -p %<CR>
+nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
 " Clap
-nnoremap <C-p> :Clap files<CR>
-nnoremap <leader>g :Clap grep<CR>
-nnoremap <leader>gg :Clap grep ++query=<cword><CR>
-nnoremap <leader>b :Clap buffers<CR>
+let g:clap_layout = { 'relative': 'editor' }
+nnoremap <silent> <c-p> :Clap files<CR>
+nnoremap <silent> <leader>g :Clap grep<CR>
+nmap <silent> <leader>gg :Clap grep ++query=<cword><CR>
+vmap <silent> <leader>gg :Clap grep ++query=@visual<CR>
+nnoremap <silent> <leader>b :Clap buffers<CR>
 nnoremap <leader>z :Clap tags<CR>
 
 " Remap moving in autocomplete popup
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+
+" Splitjoin
+let g:splitjoin_normalize_whitespace = 1
 
 " NERDTree
 map <C-e> :NERDTreeToggle<CR>
@@ -302,6 +314,9 @@ au BufEnter *.coffee syn match error contained "\<console\>"
 let g:VtrPercentage = 25
 let g:VtrOrientation = "v"
 let g:rspec_command = "VtrSendCommandToRunner! bundle exec bin/rspec {spec}"
+map <C-f> :VtrFocusRunner<CR>
+nnoremap <leader>sl :VtrSendLinesToRunner<cr>
+vnoremap <leader>sl :VtrSendLinesToRunner<cr>
 
 " Make vim work fine with tmux
 if &term =~ '^screen'
@@ -319,26 +334,48 @@ let g:wildfire_objects = {
       \ "ruby" : ["i'", 'i"', "i)", "i]", "i}", "ir", "ar"],
       \ }
 
+" Indent Guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+
 " ALE
 let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
+let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
+let g:ale_fixers = {
+\   '*': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+\   'ruby': ['rubocop'],
+\   'javascript': ['eslint'],
+\   'vue': ['eslint'],
+\   'coffeescript': ['coffee']
+\}
 
 let g:ale_linters = {
-      \   'csh': ['shell'],
-      \   'elixir': ['credo'],
-      \   'rust': ['rls'],
-      \   'vue': ['eslint', 'vls'],
-      \   'ruby': ['rubocop'],
-      \}
+\   'csh': ['shell'],
+\   'elixir': ['credo'],
+\   'javascript': ['eslint'],
+\   'rust': ['cargo'],
+\   'vue': ['eslint', 'vls'],
+\   'coffeescript': ['coffee'],
+\   'ruby': ['rubocop']
+\}
+" Do not lint or fix minified files.
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\}
+let g:ale_sign_column_always = 1
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 
 " ALE fixers
 let g:ale_fixers = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'javascript': ['eslint'],
-      \   'ruby': ['rubocop'],
-      \   'rust': ['rustfmt'],
-      \}
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\   'rust': ['rustfmt'],
+\}
 
 " Conflict Marker
 let g:conflict_marker_highlight_group = ''
@@ -349,14 +386,12 @@ highlight ConflictMarkerOurs ctermbg=23
 highlight ConflictMarkerTheirs ctermbg=24
 highlight ConflictMarkerEnd ctermbg=25
 
+" COC.nvim
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" Keymapping for grep word under cursor with interactive mode
-" nnoremap <silent> <Leader>cf :exe 'CocList -I --auto-preview --input='.expand('<cword>').' grep'<CR>
 
 " Functions
 " Instead of making all backup and temp files in the same directory, move them
@@ -399,12 +434,10 @@ endfunction
 call InitializeDirectories()
 
 " Lightline configs
-"
-let g:rigel_lightline = 1
 let g:lightline = {
-      \ 'colorscheme': 'rigel',
+      \ 'colorscheme': 'dogrun',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], ['ctrlpmark'] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ] ],
       \   'right': [ ['lineinfo' ], ['percent'], [ 'fileformat', 'filetype' ], ['linter_status'] ]
       \ },
       \ 'tabline': {
@@ -418,7 +451,6 @@ let g:lightline = {
       \   'filetype': 'LightLineFiletype',
       \   'fileencoding': 'LightLineFileencoding',
       \   'mode': 'LightLineMode',
-      \   'ctrlpmark': 'CtrlPMark',
       \ },
       \ 'component_expand': {
       \   'bufferline': 'LightlineBufferline',
@@ -444,8 +476,7 @@ endfunction
 
 function! LightLineFilename()
   let fname = expand('%:t')
-  return fname == 'ControlP' ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
+  return  fname == '__Tagbar__' ? g:lightline.fname :
         \ fname =~ '__Gundo\|NERD_tree' ? '' :
         \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
         \ &ft == 'unite' ? unite#get_status_string() :
@@ -482,7 +513,6 @@ endfunction
 function! LightLineMode()
   let fname = expand('%:t')
   return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
         \ fname == '__Gundo__' ? 'Gundo' :
         \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
         \ fname =~ 'NERD_tree' ? 'NERDTree' :
@@ -490,33 +520,6 @@ function! LightLineMode()
         \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP'
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
-
-let g:ctrlp_status_func = {
-      \ 'main': 'CtrlPStatusFunc_1',
-      \ 'prog': 'CtrlPStatusFunc_2',
-      \ }
-
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-  let g:lightline.ctrlp_regex = a:regex
-  let g:lightline.ctrlp_prev = a:prev
-  let g:lightline.ctrlp_item = a:item
-  let g:lightline.ctrlp_next = a:next
-  return lightline#statusline(0)
-endfunction
-
-function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
 endfunction
 
 function! LightLineLinterStatus() abort
