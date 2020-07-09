@@ -349,14 +349,15 @@ let g:ale_fixers = {
 \   'ruby': ['rubocop'],
 \   'javascript': ['eslint'],
 \   'vue': ['eslint'],
-\   'coffeescript': ['coffee']
+\   'coffeescript': ['coffee'],
+\   'rust': ['rustfmt']
 \}
 
 let g:ale_linters = {
 \   'csh': ['shell'],
 \   'elixir': ['credo'],
 \   'javascript': ['eslint'],
-\   'rust': ['cargo'],
+\   'rust': ['rls'],
 \   'vue': ['eslint', 'vls'],
 \   'coffeescript': ['coffee'],
 \   'ruby': ['rubocop']
@@ -367,15 +368,7 @@ let g:ale_pattern_options = {
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \}
 let g:ale_sign_column_always = 1
-let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
-
-" ALE fixers
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'ruby': ['rubocop'],
-\   'rust': ['rustfmt'],
-\}
+let g:ale_rust_cargo_use_clippy = 1
 
 " Conflict Marker
 let g:conflict_marker_highlight_group = ''
