@@ -9,12 +9,10 @@
   branch = auto
   interactive = auto
   pager = true
-
 [color "status"]
   added = green
   changed = yellow
   untracked = red
-
 [alias]
   up = pull --rebase --stat
   blog = log --pretty=format:\"%h %ad %G? | %s%d [%an]\" --graph --date=short
@@ -39,9 +37,10 @@
 [rebase]
   autosquash = true
 [pager]
-  ; diff = diff-so-fancy | less --tabs=1,5 -RFX
-  ; show = diff-so-fancy | less --tabs=1,5 -RFX
-  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Dracula'
+  pager = delta
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
 [interactive]
     diffFilter = delta --color-only
 [color "diff-highlight"]
