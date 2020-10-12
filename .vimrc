@@ -40,6 +40,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'gcmt/wildfire.vim'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " The callback needs Rust and Cargo to be available
 Plug 'liuchengxu/vista.vim'
+Plug 'andymass/vim-matchup'
 " HTML
 Plug 'hail2u/vim-css3-syntax'
 Plug 'alvan/vim-closetag'
@@ -63,8 +64,6 @@ Plug 'wadackel/vim-dogrun'
 
 " Initialize plugin system
 call plug#end()
-
-runtime macros/matchit.vim
 
 set shell=/usr/bin/zsh " Make zsh the deafult shell
 set background=dark
