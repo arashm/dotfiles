@@ -241,6 +241,9 @@ vmap <silent> <leader>gg :Clap grep ++query=@visual<CR>
 nnoremap <silent> <leader>b :Clap buffers<CR>
 nnoremap <leader>z :Clap tags<CR>
 
+" Vista
+let g:vista_default_executive = 'coc'
+
 " Remap moving in autocomplete popup
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
