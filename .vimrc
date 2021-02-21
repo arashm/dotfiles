@@ -2,8 +2,6 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'honza/vim-snippets'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
@@ -24,7 +22,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'bling/vim-bufferline'
 Plug 'godlygeek/tabular'
-Plug 'scrooloose/nerdcommenter'
+Plug 'tyru/caw.vim'
+Plug 'Shougo/context_filetype.vim'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sheerun/vim-polyglot'
@@ -163,7 +162,7 @@ map zh zH
 nnoremap j gj
 nnoremap k gk
 
-" Formatting code using vim-autoformat
+" Formatting code using Ale
 nmap <Leader>f :ALEFix<CR>
 
 " Quicker window movement
@@ -219,30 +218,31 @@ vmap <Leader>a,, :Tabularize /,\zs<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 nmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
+vmap <Leader>a:: :Tabularize /\w:\zs/l0l1<CR>
 
 " Fugitive
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gr :Gread<CR>
-nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>ge :Gedit<CR>
+nnoremap <silent> <leader>gs :Git status<CR>
+nnoremap <silent> <leader>gc :Git commit<CR>
+nnoremap <silent> <leader>gb :Git blame<CR>
+nnoremap <silent> <leader>gl :Git log<CR>
+nnoremap <silent> <leader>gr :Git read<CR>
+nnoremap <silent> <leader>gw :Git write<CR>
+nnoremap <silent> <leader>ge :Git edit<CR>
 " Mnemonic _i_nteractive
 nnoremap <silent> <leader>gi :Git add -p %<CR>
-nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
 " Clap
 let g:clap_layout = { 'relative': 'editor' }
-nnoremap <silent> <c-p> :Clap files<CR>
+let g:clap_disable_run_rooter = v:true
+
+nnoremap <silent> <c-p> :Clap files!<CR>
+nnoremap <silent> <leader>' :Clap filer<CR>
+nnoremap <silent> <leader><leader>' :Clap filer %:p:h<CR>
 nnoremap <silent> <leader>g :Clap grep<CR>
 nmap <silent> <leader>gg :Clap grep ++query=<cword><CR>
 vmap <silent> <leader>gg :Clap grep ++query=@visual<CR>
 nnoremap <silent> <leader>b :Clap buffers<CR>
 nnoremap <leader>z :Clap tags<CR>
-
-" Vista
-let g:vista_default_executive = 'coc'
 
 " Remap moving in autocomplete popup
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
@@ -256,22 +256,16 @@ let g:splitjoin_normalize_whitespace = 1
 map <C-e> :NERDTreeToggle<CR>
 nmap <leader>n :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
+" let NERDTreeChDirMode=0
+" let NERDTreeQuitOnOpen=1
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
 let g:nerdtree_tabs_open_on_gui_startup=0
-" Project based bookmarks for nerdtree. only works if you always open vim
-" in the folder that .NERDTreeBookmarks is located
-if filereadable($PWD . "/.NERDTreeBookmarks")
-  let g:NERDTreeBookmarksFile = $PWD . "/.NERDTreeBookmarks"
+" Project based bookmarks for nerdtree.
+if isdirectory(expand(".git"))
+  let g:NERDTreeBookmarksFile = '.git/.nerdtree-bookmarks'
 endif
-
-" NERD Commenter
-let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
-let g:NERDCompactSexyComs = 1 " Use compact syntax for prettified multi-line comments
-let g:NERDDefaultAlign = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
 
 " Close tag
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js"
@@ -343,6 +337,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 " ALE
 let g:ale_rust_rls_toolchain = 'stable'
+let g:ale_ruby_rubocop_auto_correct_all = 1
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
