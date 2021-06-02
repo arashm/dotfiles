@@ -340,12 +340,12 @@ let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_ruby_rubocop_auto_correct_all = 1
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
-let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
+let g:ale_linter_aliases = {'vue': ['vue', 'javascript', 'scss']}
 let g:ale_fixers = {
 \   '*': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
 \   'ruby': ['rubocop'],
 \   'javascript': ['eslint'],
-\   'vue': ['eslint'],
+\   'vue': ['eslint', 'stylelint'],
 \   'coffeescript': ['coffee'],
 \   'rust': ['rustfmt']
 \}
@@ -355,7 +355,7 @@ let g:ale_linters = {
 \   'elixir': ['credo'],
 \   'javascript': ['eslint'],
 \   'rust': ['rls'],
-\   'vue': ['eslint', 'vls'],
+\   'vue': ['eslint', 'vls', 'stylelint'],
 \   'coffeescript': ['coffee'],
 \   'ruby': ['rubocop']
 \}
