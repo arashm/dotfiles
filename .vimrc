@@ -5,12 +5,9 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'honza/vim-snippets'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
-Plug 'flazz/vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'vim-scripts/restore_view.vim'
-Plug 'osyo-manga/vim-over'
+Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-gitgutter'
-Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-textobj-sentence'
 Plug 'reedes/vim-textobj-quote'
 Plug 'kana/vim-textobj-user'
@@ -20,19 +17,17 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
-Plug 'bling/vim-bufferline'
+Plug 'ap/vim-buftabline'
 Plug 'godlygeek/tabular'
 Plug 'tyru/caw.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sheerun/vim-polyglot'
-Plug 'daylerees/colour-schemes'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'Chiel92/vim-autoformat'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -41,17 +36,12 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " The callback need
 Plug 'liuchengxu/vista.vim'
 Plug 'andymass/vim-matchup'
 " HTML
-Plug 'hail2u/vim-css3-syntax'
 Plug 'alvan/vim-closetag'
 " Ruby
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
-" Elixir
-Plug 'carlosgaldino/elixir-snippets'
-Plug 'c-brenn/phoenix.vim'
-Plug 'slashmili/alchemist.vim'
 " Misc
 Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim'
@@ -194,8 +184,10 @@ nnoremap <Leader>a :call RunAllSpecs()<CR>
 nmap <leader>T :enew<cr>
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
+nmap <TAB> :bnext<CR>
 " Move to the previous buffer
-nmap <leader>h :bprevious<CR>
+nmap <leader>h :bprev<CR>
+nmap <S-TAB> :bprev<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap x :bp <BAR> bd #<CR>
@@ -268,13 +260,10 @@ if isdirectory(expand(".git"))
 endif
 
 " Close tag
-let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js"
+let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js,*.vue"
 
 " make editor config play well with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-
-" make vim-bufferline to not print to statusline as well
-let g:bufferline_echo = 0
 
 " disable vim-bookmark when opening nerdtree
 let g:bookmark_no_default_key_mappings = 1
@@ -300,11 +289,8 @@ autocmd BufEnter * :call BookmarkMapKeys()
 autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys() " vim-rspec mappings
 
 " Make those debugger statements painfully obvious
-au BufEnter *.rb syn match error contained "\<binding.pry\>"
-au BufEnter *.rb syn match error contained "\<debugger\>"
-au BufEnter *.js syn match error contained "\<console\>"
-au BufEnter *.js syn match error contained "\<debugger\>"
-au BufEnter *.coffee syn match error contained "\<console\>"
+au BufEnter,BufWritePost *.rb syn match error contained "\<binding.pry\>"
+au BufEnter,BufWritePost *.rb syn match error contained "\<debugger\>"
 
 " Vim tmux runner
 let g:VtrPercentage = 25
@@ -382,6 +368,19 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " Functions
 " Instead of making all backup and temp files in the same directory, move them
