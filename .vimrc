@@ -43,7 +43,6 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 " Misc
-Plug 'wakatime/vim-wakatime'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
 Plug 'ryanoasis/vim-devicons'
