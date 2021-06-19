@@ -189,7 +189,7 @@ nmap <leader>h :bprev<CR>
 nmap <S-TAB> :bprev<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
-nmap x :bp <BAR> bd #<CR>
+nmap x <BAR> :Bdelete<CR>
 nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>v :vsp<CR>
 
