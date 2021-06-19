@@ -40,14 +40,11 @@ Plug 'alvan/vim-closetag'
 " Ruby
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-bundler'
 " Misc
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
 Plug 'ryanoasis/vim-devicons'
 " Theme
-Plug 'Rigellute/rigel'
 Plug 'wadackel/vim-dogrun'
 
 " Initialize plugin system
