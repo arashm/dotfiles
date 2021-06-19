@@ -24,7 +24,7 @@
   default = tracking
 [core]
   editor = vim
-  excludesfile = ~/.gitignore
+  excludesFile = ~/.gitignore
   ignorecase = true
 [giggle]
   main-window-view = FileView
@@ -37,12 +37,19 @@
 [rebase]
   autosquash = true
 [pager]
-  pager = delta
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
 [delta]
-    features = side-by-side line-numbers decorations
-    whitespace-error-style = 22 reverse
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
