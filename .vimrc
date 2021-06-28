@@ -175,6 +175,8 @@ nnoremap <Leader><Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 
 " Buffers
+" Show if the buffer was modified
+let g:buftabline_indicators=1
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
 nmap <leader>T :enew<cr>
