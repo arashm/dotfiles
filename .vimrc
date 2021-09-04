@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'honza/vim-snippets'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'easymotion/vim-easymotion'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'farmergreg/vim-lastplace'
@@ -39,7 +39,7 @@ Plug 'andymass/vim-matchup'
 Plug 'alvan/vim-closetag'
 " Ruby
 Plug 'tpope/vim-rails'
-Plug 'thoughtbot/vim-rspec'
+Plug 'vim-test/vim-test'
 " Misc
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
@@ -168,12 +168,6 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " Sudo when root access is required
 cnoremap w!! %!sudo tee > /dev/null %
 
-" Vim rspec custom commands
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader><Leader>l :call RunLastSpec()<CR>
-nnoremap <Leader>a :call RunAllSpecs()<CR>
-
 " Buffers
 " Show if the buffer was modified
 let g:buftabline_indicators=1
@@ -182,10 +176,8 @@ let g:buftabline_indicators=1
 nmap <leader>T :enew<cr>
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
-nmap <TAB> :bnext<CR>
 " Move to the previous buffer
 nmap <leader>h :bprev<CR>
-nmap <S-TAB> :bprev<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap x <BAR> :Bdelete<CR>
@@ -228,11 +220,15 @@ let g:clap_disable_run_rooter = v:true
 nnoremap <silent> <c-p> :Clap files!<CR>
 nnoremap <silent> <leader>' :Clap filer<CR>
 nnoremap <silent> <leader><leader>' :Clap filer %:p:h<CR>
-nnoremap <silent> <leader>g :Clap grep<CR>
-nmap <silent> <leader>gg :Clap grep ++query=<cword><CR>
-vmap <silent> <leader>gg :Clap grep ++query=@visual<CR>
+nnoremap <silent> <leader>g :Clap grep2<CR>
+nmap <silent> <leader>gg :Clap grep2 ++query=<cword><CR>
+vmap <silent> <leader>gg :Clap grep2 ++query=@visual<CR>
+vmap <silent> <leader>gf :Clap grep2 %:p:h<CR>
 nnoremap <silent> <leader>b :Clap buffers<CR>
 nnoremap <leader>z :Clap tags<CR>
+
+" Vista
+let g:vista_default_executive = 'coc'
 
 " Remap moving in autocomplete popup
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
@@ -246,8 +242,6 @@ let g:splitjoin_normalize_whitespace = 1
 map <C-e> :NERDTreeToggle<CR>
 nmap <leader>n :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
-" let NERDTreeChDirMode=0
-" let NERDTreeQuitOnOpen=1
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
@@ -293,10 +287,15 @@ au BufEnter,BufWritePost *.rb syn match error contained "\<debugger\>"
 " Vim tmux runner
 let g:VtrPercentage = 25
 let g:VtrOrientation = "v"
-let g:rspec_command = "VtrSendCommandToRunner! bundle exec bin/rspec {spec}"
 map <C-f> :VtrFocusRunner<CR>
 nnoremap <leader>sl :VtrSendLinesToRunner<cr>
-vnoremap <leader>sl :VtrSendLinesToRunner<cr>
+
+" vim-test
+let test#strategy = "vtr"
+nmap <silent> <Leader>t :TestFile<CR>
+nmap <silent> <Leader>s :TestNearest<CR>
+nmap <silent> <Leader>a :TestSuite<CR>
+nmap <silent> <Leader><Leader>l :TestLast<CR>
 
 " Make vim work fine with tmux
 if &term =~ '^screen'
