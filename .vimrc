@@ -1,7 +1,12 @@
 autocmd!
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'yuki-yano/fern-preview.vim'
 Plug 'honza/vim-snippets'
 Plug 'mg979/vim-visual-multi'
 Plug 'easymotion/vim-easymotion'
@@ -43,7 +48,7 @@ Plug 'vim-test/vim-test'
 " Misc
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-bbye'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 " Theme
 Plug 'wadackel/vim-dogrun'
 
@@ -238,18 +243,34 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
 " Splitjoin
 let g:splitjoin_normalize_whitespace = 1
 
+" Fern
+let g:fern#renderer = "nerdfont"
+map <C-e> :Fern . -drawer -keep -toggle<CR>
+nmap <leader>n :Fern . -drawer -keep -toggle -reveal=%<CR>
+function! s:fern_settings() abort
+  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+endfunction
+
+augroup fern-settings
+  autocmd!
+  autocmd FileType fern call s:fern_settings()
+augroup END
+
 " NERDTree
-map <C-e> :NERDTreeToggle<CR>
-nmap <leader>n :NERDTreeFind<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
-" Project based bookmarks for nerdtree.
-if isdirectory(expand(".git"))
-  let g:NERDTreeBookmarksFile = '.git/.nerdtree-bookmarks'
-endif
+" map <C-e> :NERDTreeToggle<CR>
+" nmap <leader>n :NERDTreeFind<CR>
+" let NERDTreeShowBookmarks=1
+" let NERDTreeMouseMode=2
+" let NERDTreeShowHidden=1
+" let NERDTreeKeepTreeInNewTab=1
+" let g:nerdtree_tabs_open_on_gui_startup=0
+" " Project based bookmarks for nerdtree.
+" if isdirectory(expand(".git"))
+"   let g:NERDTreeBookmarksFile = '.git/.nerdtree-bookmarks'
+" endif
 
 " Close tag
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js,*.vue"
@@ -258,27 +279,27 @@ let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.jsx,*.js,*.vue"
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " disable vim-bookmark when opening nerdtree
-let g:bookmark_no_default_key_mappings = 1
-function! BookmarkMapKeys()
-  nmap mm :BookmarkToggle<CR>
-  nmap mi :BookmarkAnnotate<CR>
-  nmap mn :BookmarkNext<CR>
-  nmap mp :BookmarkPrev<CR>
-  nmap ma :BookmarkShowAll<CR>
-  nmap mc :BookmarkClear<CR>
-  nmap mx :BookmarkClearAll<CR>
-endfunction
-function! BookmarkUnmapKeys()
-  unmap mm
-  unmap mi
-  unmap mn
-  unmap mp
-  unmap ma
-  unmap mc
-  unmap mx
-endfunction
-autocmd BufEnter * :call BookmarkMapKeys()
-autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys() " vim-rspec mappings
+" let g:bookmark_no_default_key_mappings = 1
+" function! BookmarkMapKeys()
+"   nmap mm :BookmarkToggle<CR>
+"   nmap mi :BookmarkAnnotate<CR>
+"   nmap mn :BookmarkNext<CR>
+"   nmap mp :BookmarkPrev<CR>
+"   nmap ma :BookmarkShowAll<CR>
+"   nmap mc :BookmarkClear<CR>
+"   nmap mx :BookmarkClearAll<CR>
+" endfunction
+" function! BookmarkUnmapKeys()
+"   unmap mm
+"   unmap mi
+"   unmap mn
+"   unmap mp
+"   unmap ma
+"   unmap mc
+"   unmap mx
+" endfunction
+" autocmd BufEnter * :call BookmarkMapKeys()
+" autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys() " vim-rspec mappings
 
 " Make those debugger statements painfully obvious
 au BufEnter,BufWritePost *.rb syn match error contained "\<binding.pry\>"
@@ -501,7 +522,6 @@ function! LightLineMode()
   return fname == '__Tagbar__' ? 'Tagbar' :
         \ fname == '__Gundo__' ? 'Gundo' :
         \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
         \ &ft == 'unite' ? 'Unite' :
         \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'vimshell' ? 'VimShell' :
