@@ -12,6 +12,7 @@ set -gx PASSWORD_STORE_DIR $HOME/.config/password-store
 set -U FZF_TMUX 1
 set -gx ANDROID_HOME $HOME/Public/android_sdk/
 set -gx ANDROID_SDK_ROOT $HOME/Public/android_sdk/
+set -gx VOLTA_HOME "$HOME/.volta"
 
 if status --is-interactive
   set -gx LANG en_US.utf8
@@ -19,7 +20,7 @@ if status --is-interactive
   set -gx LC_CTYPE en_US.utf8
 end
 
-set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $HOME/Public/flutter/bin $PATH
+set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $HOME/Public/flutter/bin "$VOLTA_HOME/bin" $PATH
 
 #
 ## Aliases #
