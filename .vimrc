@@ -1,60 +1,8 @@
-autocmd!
-call plug#begin('~/.vim/plugged')
-
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'yuki-yano/fern-preview.vim'
-Plug 'honza/vim-snippets'
-Plug 'mg979/vim-visual-multi'
-Plug 'easymotion/vim-easymotion'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'farmergreg/vim-lastplace'
-Plug 'airblade/vim-gitgutter'
-Plug 'reedes/vim-textobj-sentence'
-Plug 'reedes/vim-textobj-quote'
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'reedes/vim-wordy'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-endwise'
-Plug 'ap/vim-buftabline'
-Plug 'godlygeek/tabular'
-Plug 'tyru/caw.vim'
-Plug 'Shougo/context_filetype.vim'
-Plug 'rhysd/conflict-marker.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'sheerun/vim-polyglot'
-Plug 'christoomey/vim-tmux-runner'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'gcmt/wildfire.vim'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " The callback needs Rust and Cargo to be available
-Plug 'liuchengxu/vista.vim'
-Plug 'andymass/vim-matchup'
-" HTML
-Plug 'alvan/vim-closetag'
-" Ruby
-Plug 'tpope/vim-rails'
-Plug 'vim-test/vim-test'
-" Misc
-Plug 'editorconfig/editorconfig-vim'
-Plug 'moll/vim-bbye'
-" Plug 'ryanoasis/vim-devicons'
-" Theme
-Plug 'wadackel/vim-dogrun'
-
-" Initialize plugin system
-call plug#end()
-
 set shell=/usr/bin/zsh " Make zsh the deafult shell
+let g:loaded_python_provider = 0
+let g:loaded_perl_provider = 0
+let g:ruby_host_prog = '/home/arashm/.rbenv/shims/neovim-ruby-host'
+let g:node_host_prog = '/home/arashm/.volta/tools/image/packages/neovim/bin/neovim-node-host'
 set background=dark
 set t_Co=256
 set shiftwidth=2
@@ -129,7 +77,7 @@ hi link SpellRare SpellBad
 let g:vue_disable_pre_processors=1
 
 " Set leader (NOTICE: The leader is not selected in a democratic election)
-let mapleader = ','
+let mapleader = ';'
 let maplocalleader = "-"
 
 "
@@ -220,6 +168,7 @@ nnoremap <silent> <leader>gi :Git add -p %<CR>
 " Clap
 let g:clap_layout = { 'relative': 'editor' }
 let g:clap_disable_run_rooter = v:true
+let g:clap_provider_tags_force_vista = 1
 
 nnoremap <silent> <c-p> :Clap files!<CR>
 nnoremap <silent> <leader>' :Clap filer<CR>
@@ -280,15 +229,6 @@ nmap <silent> <Leader>t :TestFile<CR>
 nmap <silent> <Leader>s :TestNearest<CR>
 nmap <silent> <Leader>a :TestSuite<CR>
 nmap <silent> <Leader><Leader>l :TestLast<CR>
-
-" Make vim work fine with tmux
-if &term =~ '^screen'
-  " tmux will send xterm-style keys when its xterm-keys option is on
-  execute "set <xUp>=\e[1;*A"
-  execute "set <xDown>=\e[1;*B"
-  execute "set <xRight>=\e[1;*C"
-  execute "set <xLeft>=\e[1;*D"
-endif
 
 " Wildfire
 let g:wildfire_objects = {

@@ -4,4 +4,4 @@ TEMP~*
 .NERDTreeBookmarks
 .agignore
 /.yardoc
-
+/nvim/plugged/*
