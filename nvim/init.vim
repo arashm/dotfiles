@@ -1,6 +1,3 @@
-" set runtimepath^=~/.vim runtimepath+=~/.vim/after
-" let &packpath = &runtimepath
-
 lua require('global_options')
 lua require('global_mappings')
 lua require('plugins')

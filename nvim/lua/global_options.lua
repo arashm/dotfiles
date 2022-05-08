@@ -1,7 +1,7 @@
 local set = vim.opt
 local g = vim.g
 
-set.shell                   = '/usr/bin/zsh' -- Make zsh the deafult shell
+-- set.shell                   = vim.env.shell
 set.background              = 'dark'
 set.smartindent             = true
 set.number                  = true -- Show line numbers
