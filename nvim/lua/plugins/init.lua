@@ -65,5 +65,21 @@ Plug('wadackel/vim-dogrun', {
     vim.cmd('colorscheme dogrun')
   end
 })
-
 vim.call('plug#end')
+
+require('plugins.theme')
+require('plugins.fern')
+require('plugins.tabularize')
+require('plugins.fugitive')
+require('plugins.wildfire')
+require('plugins.closetag')
+require('plugins.editor_config')
+require('plugins.coc')
+require('plugins.clap')
+require('plugins.vista')
+require('plugins.ale')
+require('plugins.vtr')
+require('plugins.conflict_marker')
+require('plugins.vim_test')
+require('plugins.splitjoin')
+require('plugins.lightline')
