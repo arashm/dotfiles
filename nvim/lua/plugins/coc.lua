@@ -13,8 +13,8 @@ function! s:coc_show_documentation()
 endfunction
 ]])
 
-nnoremap('<silent> gd', '<Plug>(coc-definition)')
-nnoremap('<silent> gy', '<Plug>(coc-type-definition)')
-nnoremap('<silent> gi', '<Plug>(coc-implementation)')
-nnoremap('<silent> gr', '<Plug>(coc-references)')
-nnoremap('<silent> K', ':call coc_show_documentation()<CR>')
+nnoremap('gd', '<Plug>(coc-definition)')
+nnoremap('gy', '<Plug>(coc-type-definition)')
+nnoremap('gi', '<Plug>(coc-implementation)')
+nnoremap('gr', '<Plug>(coc-references)')
+nnoremap('K', ':call coc_show_documentation()<CR>')
