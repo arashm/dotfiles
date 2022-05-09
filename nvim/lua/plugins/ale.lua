@@ -15,7 +15,8 @@ g.ale_fixers = {
    javascript   = { 'eslint' },
    vue          = { 'eslint', 'stylelint' },
    coffeescript = { 'coffee' },
-   rust         = { 'rustfmt' }
+   rust         = { 'rustfmt' },
+   lua          = { 'stylua' },
 }
 g.ale_linters = {
    csh          = { 'shell' },

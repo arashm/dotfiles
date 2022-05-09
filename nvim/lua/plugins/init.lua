@@ -2,11 +2,8 @@ local Plug=vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
-Plug('lambdalisue/fern.vim')
-Plug('lambdalisue/nerdfont.vim')
-Plug('lambdalisue/fern-renderer-nerdfont.vim')
-Plug('lambdalisue/fern-git-status.vim')
-Plug('yuki-yano/fern-preview.vim')
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug('honza/vim-snippets')
 Plug('mg979/vim-visual-multi')
 Plug('phaazon/hop.nvim')
@@ -68,7 +65,7 @@ Plug('wadackel/vim-dogrun', {
 vim.call('plug#end')
 
 require('plugins.theme')
-require('plugins.fern')
+require('plugins.nvim-tree')
 require('plugins.tabularize')
 require('plugins.fugitive')
 require('plugins.wildfire')

@@ -54,6 +54,4 @@ vim.cmd [[
 ]]
 
 -- My system based specific options that will rewrite the ones here
-if vim.fn.filereadable('local_options.lua') then
-  require('local_options')
-end
+pcall(require, 'local_options')
