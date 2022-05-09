@@ -1,6 +1,6 @@
-local view = require "nvim-tree.view"
-local lib = require "nvim-tree.lib"
-local h = require "helpers"
+local view = require("nvim-tree.view")
+local lib = require("nvim-tree.lib")
+local h = require("helpers")
 local nnoremap = h.nnoremap
 local vnoremap = h.vnoremap
 

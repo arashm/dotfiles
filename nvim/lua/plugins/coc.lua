@@ -1,4 +1,4 @@
-local h = require('helpers')
+local h = require("helpers")
 local nnoremap = h.nnoremap
 
 vim.cmd([[
@@ -13,8 +13,8 @@ function! s:coc_show_documentation()
 endfunction
 ]])
 
-nnoremap('gd', '<Plug>(coc-definition)')
-nnoremap('gy', '<Plug>(coc-type-definition)')
-nnoremap('gi', '<Plug>(coc-implementation)')
-nnoremap('gr', '<Plug>(coc-references)')
-nnoremap('K', ':call coc_show_documentation()<CR>')
+nnoremap("gd", "<Plug>(coc-definition)")
+nnoremap("gy", "<Plug>(coc-type-definition)")
+nnoremap("gi", "<Plug>(coc-implementation)")
+nnoremap("gr", "<Plug>(coc-references)")
+nnoremap("K", ":call coc_show_documentation()<CR>")

@@ -1,8 +1,8 @@
 local g = vim.g
 
-g.conflict_marker_highlight_group = ''
-g.conflict_marker_begin           = '^<<<<<<< .*$'
-g.conflict_marker_end             = '^>>>>>>> .*$'
+g.conflict_marker_highlight_group = ""
+g.conflict_marker_begin = "^<<<<<<< .*$"
+g.conflict_marker_end = "^>>>>>>> .*$"
 
 vim.cmd([[
   highlight ConflictMarkerBegin ctermbg=29
