@@ -33,9 +33,9 @@ set.expandtab               = true  -- Tabs are spaces, not tabs
 set.joinspaces              = false -- Prevents inserting two spaces after punctuation on a join (J)
 set.splitright              = true -- Puts new vsplit windows to the right of the current
 set.splitbelow              = true -- Puts new split windows to the bottom of the current
-set.textwidth               = 0 -- Make it obvious where 80 characters is
-set.colorcolumn             = '80'
-set.laststatus              = 2
+set.textwidth               = 0 -- Do wrap long lines after paste
+set.colorcolumn             = '80' -- Make it obvious where 80 characters is
+set.laststatus              = 2 -- Always show status line
 set.autochdir               = false
 set.showtabline             = 2 -- Always show the Tabline
 set.re                      = 1 -- Fix syntax highlighting of Ruby RegEx
@@ -53,3 +53,7 @@ vim.cmd [[
   filetype plugin indent on
 ]]
 
+-- My system based specific options that will rewrite the ones here
+if vim.fn.filereadable('local_options.lua') then
+  require('local_options')
+end

@@ -5,3 +5,4 @@ TEMP~*
 .agignore
 /.yardoc
 /nvim/plugged/*
+/nvim/lua/local_options.lua
