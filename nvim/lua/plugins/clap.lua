@@ -5,7 +5,6 @@ local vnoremap = h.vnoremap
 
 g.clap_layout = { relative = "editor" }
 g.clap_disable_run_rooter = "v:true"
-g.clap_provider_tags_force_vista = 1
 
 nnoremap("<c-p>", ":Clap files!<CR>")
 nnoremap("<leader>'", ":Clap filer<CR>")

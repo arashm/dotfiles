@@ -44,7 +44,6 @@ Plug("kkoomen/vim-doge", {
     vim.call("doge#install()")
   end,
 })
-Plug("liuchengxu/vista.vim")
 Plug("andymass/vim-matchup")
 -- HTML
 Plug("alvan/vim-closetag")
@@ -73,7 +72,6 @@ require("plugins.closetag")
 require("plugins.editor_config")
 require("plugins.coc")
 require("plugins.clap")
-require("plugins.vista")
 require("plugins.ale")
 require("plugins.vtr")
 require("plugins.conflict_marker")
