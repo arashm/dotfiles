@@ -5,7 +5,7 @@ local nnoremap = h.nnoremap
 local vnoremap = h.vnoremap
 
 nnoremap("<C-e>", ":NvimTreeToggle<CR>")
-nnoremap("<leader>n", ":<leader>n")
+nnoremap("<leader>n", ":NvimTreeFindFile<CR>")
 
 vim.g.nvim_tree_icons = {
   default = "",
