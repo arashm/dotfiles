@@ -49,6 +49,11 @@ local config = {
       quit_on_open = false,
     },
   },
+  git = {
+    enable = true,
+    ignore = false, -- Always show ignored files
+    timeout = 400,
+  },
 }
 
 local function collapse_all()
