@@ -1,5 +1,3 @@
-source $HOME/.asdf/asdf.fish
-
 set -gx EDITOR vim
 set -gx GEM_EDITOR vim
 set -gx LESSOPEN "| /usr/bin/src-hilite-lesspipe.sh %s"
@@ -18,31 +16,27 @@ if status --is-interactive
   set -gx LANG en_US.utf8
   set -gx LC_ALL en_US.utf8
   set -gx LC_CTYPE en_US.utf8
+
+  alias grep="grep --color=auto"
+  alias less="bat"
+  alias open='xdg-open'
+  alias tmux='tmux -2'
+  alias s='sudo'
+  alias p='sudo pacman --color=auto'
+  alias pss='pacman -Ss --color=auto'
+  alias pu='pacman -Syu --color=auto'
+  alias y='paru'
+  alias yss='paru -Ss'
+  alias passf='pass clip --fzf'
+  alias c='clear'
+  alias vi='nvim'
+  alias vim='nvim'
+
+  source $HOME/.asdf/asdf.fish
+  source (rbenv init -|psub)
 end
 
 set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $HOME/Public/flutter/bin "$VOLTA_HOME/bin" $PATH
-
-#
-## Aliases #
-#
-
-# Other Aliases
-alias grep="grep --color=auto"
-alias less="bat"
-alias open='xdg-open'
-alias tmux='tmux -2'
-alias s='sudo'
-alias p='sudo pacman --color=auto'
-alias pss='pacman -Ss --color=auto'
-alias pu='pacman -Syu --color=auto'
-alias y='paru'
-alias yss='paru -Ss'
-alias passf='pass clip --fzf'
-alias c='clear'
-alias vi='nvim'
-alias vim='nvim'
-
-status --is-interactive; and source (rbenv init -|psub)
 
 # Greetings!
 function fish_greeting
