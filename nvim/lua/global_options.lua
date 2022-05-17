@@ -1,7 +1,7 @@
 local set = vim.opt
 local g = vim.g
 
--- set.shell                   = vim.env.shell
+set.shell = "/bin/sh"
 set.background = "dark"
 set.smartindent = true
 set.number = true -- Show line numbers
