@@ -7,7 +7,7 @@ lua require('plugins')
 " Instead of making all backup and temp files in the same directory, move them
 " to home.
 function! InitializeDirectories()
-  let parent = $HOME
+  let parent = $HOME . '/.cache'
   let prefix = 'vim'
   let dir_list = {
         \ 'backup': 'backupdir',
