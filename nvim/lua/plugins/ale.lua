@@ -23,6 +23,7 @@ g.ale_fixers = {
   coffeescript = { "coffee" },
   rust = { "rustfmt" },
   lua = { "stylua" },
+  zig = { "zigfmt" },
 }
 g.ale_linters = {
   csh = { "shell" },
