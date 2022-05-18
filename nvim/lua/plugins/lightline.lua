@@ -2,7 +2,7 @@ vim.cmd([[
 let g:lightline = {
       \ 'colorscheme': 'dogrun',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'cocstatus', 'fugitive' ] ],
       \   'right': [ ['lineinfo' ], ['percent'], [ 'fileformat', 'filetype' ], ['linter_status'] ]
       \ },
       \ 'tabline': {
@@ -16,6 +16,7 @@ let g:lightline = {
       \   'filetype': 'LightLineFiletype',
       \   'fileencoding': 'LightLineFileencoding',
       \   'mode': 'LightLineMode',
+      \   'cocstatus': 'coc#status',
       \ },
       \ 'component_expand': {
       \   'bufferline': 'LightlineBufferline',
@@ -98,6 +99,8 @@ function! LightLineLinterStatus() abort
         \   all_errors
         \)
 endfunction
+
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
