@@ -27,6 +27,7 @@ g.ale_fixers = {
   rust = { "rustfmt" },
   lua = { "stylua" },
   zig = { "zigfmt" },
+  fish = { "fish_indent" },
 }
 g.ale_linters = {
   csh = { "shell" },
