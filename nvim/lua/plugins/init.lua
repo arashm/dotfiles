@@ -62,6 +62,8 @@ Plug("wadackel/vim-dogrun", {
     vim.cmd("colorscheme dogrun")
   end,
 })
+Plug("nvim-lua/plenary.nvim")
+Plug("sindrets/diffview.nvim")
 vim.call("plug#end")
 
 require("plugins.theme")
