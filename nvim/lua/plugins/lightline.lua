@@ -1,6 +1,6 @@
 vim.cmd([[
 let g:lightline = {
-      \ 'colorscheme': 'dogrun',
+      \ 'colorscheme': 'duskfox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'cocstatus', 'fugitive' ] ],
       \   'right': [ ['lineinfo' ], ['percent'], [ 'fileformat', 'filetype' ], ['linter_status'] ]

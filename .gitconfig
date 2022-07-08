@@ -22,6 +22,7 @@
   pull = pull --rebase --stat
 [push]
   default = tracking
+  auto-setup-remote = true
 [core]
   editor = vim
   excludesFile = ~/.gitignore
