@@ -2,7 +2,7 @@ vim.cmd([[
 let g:lightline = {
       \ 'colorscheme': 'duskfox',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'cocstatus', 'fugitive' ] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'cocstatus' ] ],
       \   'right': [ ['lineinfo' ], ['percent'], [ 'fileformat', 'filetype' ], ['linter_status'] ]
       \ },
       \ 'tabline': {
@@ -10,7 +10,6 @@ let g:lightline = {
       \   'right': [ ['fileencoding'] ]
       \ },
       \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
       \   'filename': 'LightLineFilename',
       \   'fileformat': 'LightLineFileformat',
       \   'filetype': 'LightLineFiletype',
@@ -50,18 +49,6 @@ function! LightLineFilename()
         \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
         \ ('' != fname ? fname : '[No Name]') .
         \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ''  " edit here for cool mark
-      let _ = fugitive#head()
-      return strlen(_) ? mark._ : ''
-    endif
-  catch
-  endtry
-  return ''
 endfunction
 
 function! LightLineFileformat()
