@@ -48,7 +48,6 @@ Plug("editorconfig/editorconfig-vim")
 Plug("moll/vim-bbye")
 -- Theme
 Plug("EdenEast/nightfox.nvim")
-Plug("sindrets/diffview.nvim")
 vim.call("plug#end")
 
 require("plugins.theme")
@@ -67,5 +66,4 @@ require("plugins.splitjoin")
 require("plugins.hop")
 require("plugins.vgit")
 require("plugins.lualine")
-require("plugins.diffview")
 require("plugins.telescope")
