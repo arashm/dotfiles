@@ -1,5 +1,5 @@
 local function current_date()
-  result = vim.fn.system("date -I")
+  result = vim.fn.system("date +%F")
   return string.gsub(result, "\n", "")
 end
 
