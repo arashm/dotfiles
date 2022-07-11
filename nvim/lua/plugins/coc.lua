@@ -11,7 +11,7 @@ vim.g.coc_global_extensions = {
   "coc-yaml",
   "coc-snippets",
   "coc-tsserver",
-  "coc-snippets",
+  "coc-solargraph",
 }
 
 nnoremap("gd", "<Plug>(coc-definition)")
