@@ -15,6 +15,18 @@ vim.g.coc_global_extensions = {
   "coc-solargraph",
 }
 
+function _G.show_docs()
+  local cw = vim.fn.expand("<cword>")
+  if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
+    cmd("h " .. cw)
+  elseif vim.api.nvim_eval("coc#rpc#ready()") then
+    vim.fn.CocActionAsync("doHover")
+  else
+    cmd("!" .. vim.o.keywordprg .. " " .. cw)
+  end
+end
+
+nnoremap("K", "<CMD>lua _G.show_docs()<CR>")
 nnoremap("gd", "<Plug>(coc-definition)")
 nnoremap("gy", "<Plug>(coc-type-definition)")
 nnoremap("gi", "<Plug>(coc-implementation)")
