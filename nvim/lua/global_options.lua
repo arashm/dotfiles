@@ -1,5 +1,6 @@
 local set = vim.opt
 local g = vim.g
+local wo = vim.wo
 
 set.shell = "/bin/sh"
 set.background = "dark"
@@ -40,6 +41,7 @@ set.autochdir = false
 set.showtabline = 2 -- Always show the Tabline
 set.re = 1 -- Fix syntax highlighting of Ruby RegEx
 set.termguicolors = true -- enable 24bit true color
+wo.signcolumn = "yes"
 g.loaded_python_provider = 0
 g.loaded_perl_provider = 0
 g.ruby_host_prog = vim.env.HOME .. "/.rbenv/shims/neovim-ruby-host"
