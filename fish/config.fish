@@ -13,32 +13,35 @@ set -gx ANDROID_SDK_ROOT $HOME/Public/android_sdk/
 set -gx VOLTA_HOME "$HOME/.volta"
 
 if status --is-interactive
-  set -gx LANG en_US.utf8
-  set -gx LC_ALL en_US.utf8
-  set -gx LC_CTYPE en_US.utf8
+    set -gx LANG en_US.utf8
+    set -gx LC_ALL en_US.utf8
+    set -gx LC_CTYPE en_US.utf8
 
-  alias grep="grep --color=auto"
-  alias less="bat"
-  alias open='xdg-open'
-  alias tmux='tmux -2'
-  alias s='sudo'
-  alias p='sudo pacman --color=auto'
-  alias pss='pacman -Ss --color=auto'
-  alias pu='pacman -Syu --color=auto'
-  alias y='paru'
-  alias yss='paru -Ss'
-  alias passf='pass clip --fzf'
-  alias c='clear'
-  alias vi='nvim'
-  alias vim='nvim'
+    alias grep="grep --color=auto"
+    alias less="bat"
+    alias open='xdg-open'
+    alias tmux='tmux -2'
+    alias s='sudo'
+    alias p='sudo pacman --color=auto'
+    alias pss='pacman -Ss --color=auto'
+    alias pu='pacman -Syu --color=auto'
+    alias y='paru'
+    alias yss='paru -Ss'
+    alias passf='pass clip --fzf'
+    alias c='clear'
+    alias vi='nvim'
+    alias vim='nvim'
 
-  source $HOME/.asdf/asdf.fish
-  source (rbenv init -|psub)
+    source $HOME/.asdf/asdf.fish
+    source (rbenv init -|psub)
 end
 
-set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $HOME/Public/flutter/bin "$VOLTA_HOME/bin" $PATH
+set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $HOME/Public/flutter/bin $PATH
+
+bind \cb fzf_ctrl_b
+bind \cf fzf_ctrl_f
 
 # Greetings!
 function fish_greeting
-  figlet ArashM | glitchcat -d 300 -s 50
+    figlet ArashM | glitchcat -d 300 -s 50
 end
