@@ -24,7 +24,7 @@
   default = tracking
   auto-setup-remote = true
 [core]
-  editor = vim
+  editor = nvim
   excludesFile = ~/.gitignore
   ignorecase = true
 [giggle]
