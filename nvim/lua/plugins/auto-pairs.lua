@@ -1,2 +1,9 @@
 vim.g.AutoPairsCompatibleMaps = 0
 vim.g.AutoPairsMapBS = 1
+vim.g.AutoPairsShortcutToggle = ""
+vim.g.AutoPairsShortcutFastWrap = ""
+vim.g.AutoPairsShortcutJump = ""
+vim.g.AutoPairsShortcutBackInsert = ""
+vim.g.AutoPairsMoveExpression = ""
+vim.g.AutoPairsShortcutIgnore = ""
+vim.g.AutoPairsShortcutToggleMultilineClose = ""
