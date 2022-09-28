@@ -53,6 +53,7 @@ vim.call("plug#end")
 
 require("plugins.theme")
 require("plugins.treesitter")
+require("plugins.illuminate")
 require("plugins.nvim-tree")
 require("plugins.tabularize")
 require("plugins.wildfire")
