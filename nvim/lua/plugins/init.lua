@@ -4,7 +4,6 @@ vim.call("plug#begin", "~/.config/nvim/plugged")
 
 Plug("nvim-lua/plenary.nvim")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
-Plug("nvim-treesitter/nvim-treesitter-textobjects")
 Plug("RRethy/nvim-treesitter-endwise")
 Plug("nvim-telescope/telescope.nvim")
 Plug("kana/vim-textobj-user")
