@@ -3,7 +3,6 @@ require("vgit").setup({
     ["n <leader>gs"] = "buffer_hunk_stage",
     ["n <leader>gr"] = "buffer_hunk_reset",
     ["n <leader>gp"] = "buffer_hunk_preview",
-    ["n <leader>gb"] = "buffer_gutter_blame_preview",
     ["n <leader>gf"] = "buffer_diff_preview",
     ["n <leader>gh"] = "buffer_history_preview",
     ["n <leader>glu"] = "project_hunks_preview",
