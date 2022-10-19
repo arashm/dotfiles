@@ -25,7 +25,8 @@ vnoremap("<S-h>", "^", { desc = "Go to the end of the line" })
 
 noremap("<A-h>", ":bp<CR>", { desc = "Go to previous buffer" })
 noremap("<A-l>", ":bn<CR>", { desc = "Go to next buffer" })
-noremap("x", ":Bdelete<CR>", { desc = "Close the buffer" })
+noremap("x", ":Bdelete<CR>", { desc = "Close current buffer" })
+noremap("X", ":Bdelete!<CR>", { desc = "Force close current buffer" })
 
 noremap("<Leader>v", ":vsp<CR>", { desc = "Open a vertical pane" })
 
