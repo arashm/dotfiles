@@ -45,6 +45,8 @@ g.ale_pattern_options = {
   [".min.css$"] = { ale_linters = {}, ale_fixers = {} },
 }
 
+g.ale_ruby_rubocop_executable = "bundle"
+
 vim.cmd([[
 highlight link ALEVirtualTextError ErrorMsg
 highlight link ALEVirtualTextStyleError ALEVirtualTextError
