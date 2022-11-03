@@ -55,6 +55,3 @@ vim.cmd([[
   syntax on
   filetype plugin indent on
 ]])
-
--- My system based specific options that will rewrite the ones here
-pcall(require, "local_options")

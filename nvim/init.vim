@@ -2,6 +2,9 @@ lua require('global_options')
 lua require('global_mappings')
 lua require('plugins')
 
+" My system based specific options that will rewrite the ones here
+lua pcall(require, "local_options")
+
 " Functions
 
 " Instead of making all backup and temp files in the same directory, move them
