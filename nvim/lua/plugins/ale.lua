@@ -28,6 +28,7 @@ g.ale_fixers = {
   lua = { "stylua" },
   zig = { "zigfmt" },
   fish = { "fish_indent" },
+  sql = { "sqlfluff" },
 }
 g.ale_linters = {
   csh = { "shell" },
