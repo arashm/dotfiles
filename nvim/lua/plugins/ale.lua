@@ -35,9 +35,10 @@ g.ale_linters = {
   elixir = { "credo" },
   javascript = { "eslint" },
   rust = { "rls" },
-  vue = { "eslint", "vls", "stylelint" },
+  vue = { "volar", "eslint", "stylelint" },
   coffeescript = { "coffee" },
   ruby = { "rubocop" },
+  sql = { "sqlfluff" },
 }
 
 -- Do not lint or fix minified files.
