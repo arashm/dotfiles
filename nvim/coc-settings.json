@@ -1,7 +1,9 @@
 {
   "diagnostic.displayByAle": true,
-  "zig.enabled": true,
-  "zig.startUpMessage": true,
-  "zig.path": "zls",
-  "zig.debugLog": false
+  "languageserver": {
+    "zls": {
+      "command": "zls",
+      "filetypes": ["zig"]
+    }
+  }
 }
