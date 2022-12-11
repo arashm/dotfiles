@@ -1,5 +1,5 @@
-set -gx EDITOR vim
-set -gx GEM_EDITOR vim
+set -gx EDITOR nvim
+set -gx GEM_EDITOR nvim
 set -gx LESSOPEN "| /usr/bin/src-hilite-lesspipe.sh %s"
 set -gx LESS ' -R '
 # set -gx TERM xterm-256color
