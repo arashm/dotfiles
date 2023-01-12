@@ -56,6 +56,7 @@ Plug("kevinhwang91/nvim-hlslens")
 -- Theme
 Plug("EdenEast/nightfox.nvim")
 Plug("folke/tokyonight.nvim", { ["branch"] = "main" })
+Plug("eandrju/cellular-automaton.nvim")
 vim.call("plug#end")
 
 require("plugins.theme")
