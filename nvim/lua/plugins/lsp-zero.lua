@@ -24,6 +24,7 @@ null_ls.setup({
       args = vim.list_extend({ "exec", "rubocop" }, null_ls.builtins.formatting.rubocop._opts.args),
     }),
     null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.formatting.eslint,
   },
 })
 
