@@ -1,0 +1,182 @@
+# Default configuration `.config/rubocop/config.yml`
+
+require:
+  - 'rubocop-rails'
+  - 'rubocop-rspec'
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'devops/**/*'
+    - '**/bin/**/*'
+    - 'Guardfile'
+    - 'vendor/**/*'
+    - 'docs/**/*'
+    - 'node_modules/**/*'
+    - '--git-common-dir/**/*'
+    - 'Vagrantfile'
+    - 'config/puma.rb'
+    - 'config/spring.rb'
+    - 'tmp/**/*'
+  NewCops: enable
+  RSpec:
+    Patterns:
+      - _spec.rb
+      - _shared_examples.rb
+      - '(?:^|/)spec/'
+  TargetRubyVersion: 3.2
+  SuggestExtensions: false
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 119
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'integrations/**/spec/**/*.rb'
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/EmptyBlock:
+  Exclude:
+    - '**/*_factory.rb'
+    - '**/*.jbuilder'
+    - '**/*.rake'
+    - '**/*_spec.rb'
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/SafeNavigationChain:
+  AllowedMethods:
+    - present?
+    - blank?
+    - presence
+    - try
+    - try!
+    - in?
+    - to_b
+
+Metrics/AbcSize:
+  Max: 35
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - 'config/**/*'
+    - '**/*.rake'
+    - '**/routes.rb'
+    - 'spec/**/*.rb'
+    - 'integrations/**/Rakefile'
+    - 'integrations/**/*.rake'
+    - 'integrations/**/spec/**/*.rb'
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/ClassLength:
+  Max: 300
+  Exclude:
+    - 'config/**/*'
+    - 'app/queries/**/*.rb'
+    - 'integrations/**/app/queries/**/*.rb'
+
+Metrics/MethodLength:
+  Max: 20
+  AllowedMethods:
+    - query
+    - base_query
+    - as_json
+
+Metrics/ModuleLength:
+  Max: 300
+
+Metrics/PerceivedComplexity:
+  Max: 20
+
+Naming/MethodParameterName:
+  AllowedNames:
+    - by
+    - id
+    - to
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+
+Rails:
+  Enabled: true
+
+Rails/ContentTag:
+  Enabled: false
+
+Rails/DynamicFindBy:
+  AllowedMethods:
+    - find_by_domain
+    - find_by_sql
+    - find_by_or_default
+    - find_by_platform
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HttpPositionalArguments:
+  Include:
+    - 'spec/**/*'
+    - 'integrations/**/spec/**/*'
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - 'config/**/*'
+
+Rails/RenderInline:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  AllowedMethods:
+    - decrement!
+    - decrement_counter
+    - increment!
+    - increment_counter
+    - update_all
+    - touch
+  Exclude:
+    - '**/*_spec.rb'
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - test
+    - production
+    - staging
+
+RSpec/ExpectChange:
+  EnforcedStyle: block
+
+Style/Documentation:
+  Enabled: false
+
+Style/RedundantConstantBase:
+  Enabled: false
+
+Style/RegexpLiteral:
+  EnforcedStyle: mixed
+
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: consistent
