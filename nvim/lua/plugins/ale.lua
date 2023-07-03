@@ -1,5 +1,6 @@
 local h = require("helpers")
 local g = vim.g
+local v = vim.v
 local nnoremap = h.nnoremap
 
 nnoremap("<Leader>f", ":ALEFix<CR>", { desc = "Fix code style" })
@@ -47,7 +48,12 @@ g.ale_pattern_options = {
   [".min.css$"] = { ale_linters = {}, ale_fixers = {} },
 }
 
-g.ale_ruby_rubocop_executable = "bundle"
+vim.fn.system("bundle show rubucop")
+if v.shell_error == 0 then
+  g.ale_ruby_rubocop_executable = "bundle"
+end
+
+-- g.ale_ruby_rubocop_executable = "bundle"
 
 vim.cmd([[
 highlight link ALEVirtualTextError ErrorMsg
