@@ -60,6 +60,8 @@ Plug("kevinhwang91/nvim-hlslens")
 -- Theme
 Plug("EdenEast/nightfox.nvim")
 Plug("folke/tokyonight.nvim", { ["branch"] = "main" })
+
+Plug("github/copilot.vim")
 vim.call("plug#end")
 
 require("plugins.theme")
