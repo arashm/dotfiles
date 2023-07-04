@@ -19,3 +19,7 @@ begin
 rescue LoadError
   warn "can't load pry-clipboard"
 end
+
+def cls
+  system('clear')
+end
