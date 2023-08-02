@@ -21,7 +21,7 @@ if status --is-interactive
     alias s='sudo'
     alias p='sudo pacman'
     alias pss='pacman -Ss'
-    alias pu='pacman -Syu'
+    alias pu='sudo pacman -Syu'
     alias y='paru'
     alias yu='paru -Syu'
     alias yss='paru -Ss'
