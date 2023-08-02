@@ -1,7 +1,7 @@
 [user]
   name = Arash Mousavi
   email = mousavi.arash@gmail.com
-  signingKey = 755F730D
+  signingkey = /home/arash/.ssh/id_ed25519
 [color]
   ui = auto
   diff = auto
@@ -60,3 +60,5 @@
   gpgsign = true
 [pull]
   rebase = true
+[gpg]
+	format = ssh
