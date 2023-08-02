@@ -20,8 +20,9 @@ g.ale_rust_cargo_use_clippy = 1
 g.ale_sign_column_always = 1
 g.ale_rust_cargo_use_clippy = 1
 g.ale_fixers = {
-  ["*"] = { "prettier", "remove_trailing_lines", "trim_whitespace" },
+  ["*"] = { "remove_trailing_lines", "trim_whitespace" },
   ruby = { "rubocop" },
+  eruby = { "erb-formatter" },
   javascript = { "eslint" },
   vue = { "prettier", "eslint", "stylelint" },
   coffeescript = { "coffee" },
@@ -30,6 +31,7 @@ g.ale_fixers = {
   zig = { "zigfmt" },
   fish = { "fish_indent" },
   sql = { "sqlfluff" },
+  c = { "clang-format" },
 }
 g.ale_linters = {
   csh = { "shell" },
@@ -39,7 +41,9 @@ g.ale_linters = {
   vue = { "prettier", "volar", "eslint", "stylelint" },
   coffeescript = { "coffee" },
   ruby = { "rubocop" },
+  eruby = { "erb" },
   sql = { "sqlfluff" },
+  vim = { "vint" },
 }
 
 -- Do not lint or fix minified files.
