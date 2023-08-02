@@ -1,3 +1,3 @@
-function j -d "Autojump alias" -w "autojump"
-  cd (env AUTOJUMP_SOURCED=1 autojump $argv)
+function j -d "zoxide alias" -w z
+    z $argv
 end
