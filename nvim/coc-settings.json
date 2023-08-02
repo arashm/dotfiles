@@ -4,6 +4,17 @@
     "zls": {
       "command": "zls",
       "filetypes": ["zig"]
+    },
+    "crystal": {
+      "command": "crystalline",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "crystal"
+      ],
+      "rootPatterns": ["shard.yml"]
     }
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
