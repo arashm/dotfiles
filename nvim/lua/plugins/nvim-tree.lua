@@ -1,5 +1,6 @@
 local view = require("nvim-tree.view")
 local lib = require("nvim-tree.lib")
+local api = require("nvim-tree.api")
 local h = require("helpers")
 local nnoremap = h.nnoremap
 local vnoremap = h.vnoremap
@@ -103,7 +104,7 @@ local function on_attach(bufnr)
   -- You will need to insert "your code goes here" for any mappings with a custom action_cb
   vim.keymap.set("n", "l", edit_or_open, opts("Edit Or Open"))
   vim.keymap.set("n", "L", vsplit_preview, opts("Vsplit Preview"))
-  vim.keymap.set("n", "h", api.tree.close, opts("Close"))
+  vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
   vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse All"))
 end
 
