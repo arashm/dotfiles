@@ -1,3 +1,3 @@
 function ll -d "Nice sorted ls long list"
-  exa -la --group-directories-first $argv
+    eza -la --group-directories-first $argv
 end

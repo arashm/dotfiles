@@ -62,3 +62,7 @@
   rebase = true
 [gpg]
 	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /home/arash/.config/git/allowed_signers
+[init]
+	defaultBranch = main

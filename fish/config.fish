@@ -32,6 +32,7 @@ if status --is-interactive
     source $HOME/.asdf/asdf.fish
     ~/.rbenv/bin/rbenv init - fish | source
     zoxide init fish | source
+    atuin init fish | source
 end
 
 set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $HOME/Public/flutter/bin $PATH
