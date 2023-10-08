@@ -1,7 +1,7 @@
 [user]
   name = Arash Mousavi
   email = me@amousavi.dev
-  signingkey = /home/arash/.ssh/id_ed25519_sign_key
+  signingkey = ~/.ssh/id_ed25519_sign_key.pub
 [color]
   ui = auto
   diff = auto
@@ -61,6 +61,6 @@
 [gpg]
   format = ssh
 [gpg "ssh"]
-  allowedSignersFile = /home/arash/.config/git/allowed_signers
+  allowedSignersFile = ~/.config/git/allowed_signers
 [init]
   defaultBranch = main
