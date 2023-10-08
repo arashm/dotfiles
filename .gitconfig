@@ -1,7 +1,7 @@
 [user]
   name = Arash Mousavi
-  email = mousavi.arash@gmail.com
-  signingkey = /home/arash/.ssh/id_ed25519
+  email = me@amousavi.dev
+  signingkey = /home/arash/.ssh/id_ed25519_sign_key
 [color]
   ui = auto
   diff = auto
@@ -33,8 +33,6 @@
   main-window-maximized = true
   main-window-geometry = 254x52+2+32
   file-view-vpane-position = 189
-[diff]
-  tool = meld
 [rebase]
   autosquash = true
 [pager]
@@ -46,9 +44,9 @@
   features = side-by-side line-numbers decorations
   whitespace-error-style = 22 reverse
 [delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
 [interactive]
   diffFilter = delta --color-only
 [color "diff-highlight"]
@@ -61,8 +59,8 @@
 [pull]
   rebase = true
 [gpg]
-	format = ssh
+  format = ssh
 [gpg "ssh"]
-	allowedSignersFile = /home/arash/.config/git/allowed_signers
+  allowedSignersFile = /home/arash/.config/git/allowed_signers
 [init]
-	defaultBranch = main
+  defaultBranch = main
