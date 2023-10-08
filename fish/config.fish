@@ -10,9 +10,9 @@ set -gx ANDROID_HOME $HOME/Public/android_sdk/
 set -gx ANDROID_SDK_ROOT $HOME/Public/android_sdk/
 
 if status --is-interactive
-    set -gx LANG en_US.utf8
-    set -gx LC_ALL en_US.utf8
-    set -gx LC_CTYPE en_US.utf8
+    set -gx LANG en_US.utf-8
+    set -gx LC_ALL en_US.utf-8
+    set -gx LC_CTYPE en_US.utf-8
 
     alias grep="grep --color=auto"
     alias less="bat"
@@ -42,5 +42,5 @@ bind \cf fzf_ctrl_f
 
 # Greetings!
 function fish_greeting
-    figlet ArashM | glitchcat -d 300 -s 50
+    figlet ArashM
 end
