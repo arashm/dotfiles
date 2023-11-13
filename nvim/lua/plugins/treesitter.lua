@@ -1,6 +1,23 @@
 require("nvim-treesitter.configs").setup({
   -- A list of parser names, or "all"
-  ensure_installed = { "ruby", "lua", "javascript", "vue", "scss", "yaml", "json", "gitcommit", "gitignore" },
+  ensure_installed = {
+          "ruby",
+          "embedded_template",
+          "html",
+          "lua",
+          "javascript",
+          "vue",
+          "scss",
+          "yaml",
+          "json",
+          "gitcommit",
+          "gitignore",
+          "markdown",
+          "markdown_inline",
+          "dockerfile",
+          "sql",
+          "bash",
+  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -28,6 +45,9 @@ require("nvim-treesitter.configs").setup({
     enable = true,
   },
   context_commentstring = {
+    enable = true,
+  },
+  embedded_template = { 
     enable = true,
   },
 })
