@@ -45,6 +45,6 @@ vnoremap("<A-j>", ":m '>+1<CR>gv=gv")
 vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Remap moving in autocomplete popup
-inoremap("<expr> <TAB>", 'pumvisible() ? "\\<C-y>" : "\\<TAB>"')
-inoremap("<expr> <C-j>", 'pumvisible() ? "\\<C-n>" : "\\<Down>"')
-inoremap("<expr> <C-k>", 'pumvisible() ? "\\<C-p>" : "\\<Up>"')
+-- inoremap("<expr> <TAB>", 'pumvisible() ? "\\<C-y>" : "\\<TAB>"')
+-- inoremap("<expr> <C-j>", 'pumvisible() ? "\\<C-n>" : "\\<Down>"')
+-- inoremap("<expr> <C-k>", 'pumvisible() ? "\\<C-p>" : "\\<Up>"')
