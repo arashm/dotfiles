@@ -6,3 +6,6 @@ TEMP~*
 /.yardoc
 /nvim/plugged/*
 /nvim/lua/local_options.lua
+/fish/completions
+/fish/fish_variables
+/fish/conf.d
