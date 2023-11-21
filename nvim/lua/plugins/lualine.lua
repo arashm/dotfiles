@@ -1,5 +1,5 @@
 local function current_date()
-  result = vim.fn.system("date +%F")
+  local result = vim.fn.system("date +%F")
   return string.gsub(result, "\n", "")
 end
 
@@ -16,7 +16,7 @@ require("lualine").setup({
   sections = {
     lualine_a = { "mode" },
     lualine_b = { "branch", "diff", "diagnostics" },
-    lualine_c = { "filetype", "filename", "g:coc_status", "MatchupStatusOffscreen" },
+    lualine_c = { "filetype", "filename", "MatchupStatusOffscreen" },
     lualine_x = { current_date, "encoding", "fileformat" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
