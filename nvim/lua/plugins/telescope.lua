@@ -11,7 +11,7 @@ require("telescope").setup({
     cache_picker = { num_pickers = 20 },
   },
 })
--- require("telescope").load_extension("coc")
+require("telescope").load_extension("coc")
 
 nnoremap("<c-p>", "<cmd>Telescope find_files<CR>")
 nnoremap("<leader>p", "<cmd>Telescope pickers<CR>")
