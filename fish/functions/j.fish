@@ -1,3 +1,7 @@
 function j -d "zoxide alias" -w z
-    z $argv
+    if test -n "$argv"
+        z $argv
+    else
+        zi
+    end
 end
