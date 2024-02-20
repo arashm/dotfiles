@@ -63,6 +63,7 @@ Plug("folke/tokyonight.nvim", { ["branch"] = "main" })
 Plug("vim-crystal/vim-crystal")
 
 Plug("github/copilot.vim")
+Plug("gptlang/CopilotChat.nvim")
 vim.call("plug#end")
 
 require("plugins.theme")
@@ -93,5 +94,6 @@ require("plugins.fugitive")
 require("plugins.nvim-scrollbar")
 require("plugins.nvim-hlslens")
 require("plugins.comment-nvim")
+require("plugins.copilotchat")
 
 require("nvim-lastplace").setup({})
