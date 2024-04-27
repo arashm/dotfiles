@@ -57,3 +57,8 @@ vim.cmd([[
   syntax on
   filetype plugin indent on
 ]])
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "eruby.yaml",
+  command = "set filetype=yaml",
+})
