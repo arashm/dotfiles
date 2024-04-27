@@ -5,7 +5,7 @@ local nnoremap = h.nnoremap
 
 nnoremap("<Leader>f", ":ALEFix<CR>", { desc = "Fix code style" })
 
-g.ale_disable_lsp = 1
+g.ale_disable_lsp = 0
 g.ale_virtualtext_cursor = 1
 g.ale_virtualtext_prefix = "▸ "
 g.ale_lint_on_save = 1
@@ -21,29 +21,32 @@ g.ale_sign_column_always = 1
 g.ale_rust_cargo_use_clippy = 1
 g.ale_fixers = {
   ["*"] = { "remove_trailing_lines", "trim_whitespace" },
-  ruby = { "rubocop" },
-  eruby = { "erb-formatter" },
-  javascript = { "eslint" },
-  vue = { "prettier", "eslint", "stylelint" },
-  coffeescript = { "coffee" },
-  rust = { "rustfmt" },
-  lua = { "stylua" },
-  zig = { "zigfmt" },
-  fish = { "fish_indent" },
-  sql = { "sqlfluff" },
   c = { "clang-format" },
+  coffeescript = { "coffee" },
+  eruby = { "htmlbeautifier", "erblint" },
+  fish = { "fish_indent" },
+  html = { "prettier" },
+  javascript = { "eslint" },
+  json = { "prettier" },
+  lua = { "stylua" },
+  ruby = { "rubocop" },
+  rust = { "rustfmt" },
+  sql = { "sqlfluff" },
+  vue = { "prettier", "eslint", "stylelint" },
+  yaml = { "prettier" },
+  zig = { "zigfmt" },
 }
 g.ale_linters = {
   csh = { "shell" },
   elixir = { "credo" },
+  eruby = { "erblint" },
   javascript = { "eslint" },
-  rust = { "rls" },
-  vue = { "prettier", "volar", "eslint", "stylelint" },
-  coffeescript = { "coffee" },
   ruby = { "rubocop" },
-  eruby = { "erb" },
+  rust = { "rls" },
   sql = { "sqlfluff" },
   vim = { "vint" },
+  vue = { "prettier", "volar", "eslint", "stylelint" },
+  yaml = { "yamllint" },
 }
 
 -- Do not lint or fix minified files.
