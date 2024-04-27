@@ -23,6 +23,7 @@
 [push]
   default = tracking
   auto-setup-remote = true
+  autoSetupRemote = true
 [core]
   editor = nvim
   excludesFile = ~/.gitignore
@@ -64,3 +65,7 @@
   allowedSignersFile = ~/.config/git/allowed_signers
 [init]
   defaultBranch = main
+[credential "https://github.com"]
+  helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+  helper = !/usr/bin/gh auth git-credential
