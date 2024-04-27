@@ -16,5 +16,9 @@
       "rootPatterns": ["shard.yml"]
     }
   },
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "zig.zls.path": "zls",
+  "html.format.templating": true,
+  "html.filetypes": ["html", "erb", "eruby"],
+  "html.format.enable": true,
 }
