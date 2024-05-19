@@ -59,9 +59,9 @@ Plug("ziglang/zig.vim")
 Plug("moll/vim-bbye")
 Plug("petertriho/nvim-scrollbar")
 Plug("kevinhwang91/nvim-hlslens")
+Plug("esensar/nvim-dev-container")
 -- Theme
 Plug("folke/tokyonight.nvim", { ["branch"] = "main" })
-
 -- AI
 Plug("github/copilot.vim")
 Plug("CopilotC-Nvim/CopilotChat.nvim")
@@ -96,6 +96,7 @@ require("plugins.bufferline")
 require("plugins.fugitive")
 require("plugins.nvim-scrollbar")
 require("plugins.nvim-hlslens")
+require("plugins.devcontainer")
 require("plugins.comment-nvim")
 require("plugins.copilot-chat")
 
