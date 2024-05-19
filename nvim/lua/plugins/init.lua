@@ -2,6 +2,7 @@ local Plug = vim.fn["plug#"]
 
 vim.call("plug#begin", "~/.config/nvim/plugged")
 
+-- VIM
 Plug("nvim-lua/plenary.nvim")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug("RRethy/nvim-treesitter-endwise")
@@ -12,7 +13,7 @@ Plug("kyazdani42/nvim-web-devicons")
 Plug("ethanholz/nvim-lastplace")
 Plug("tpope/vim-surround")
 Plug("tpope/vim-repeat")
-Plug("akinsho/bufferline.nvim", { ["tag"] = "*" })
+Plug("akinsho/bufferline.nvim")
 Plug("nvim-lualine/lualine.nvim")
 Plug("kyazdani42/nvim-tree.lua")
 Plug("christoomey/vim-tmux-runner")
@@ -52,18 +53,19 @@ Plug("Shougo/context_filetype.vim")
 -- Ruby
 Plug("tpope/vim-rails")
 Plug("vim-test/vim-test")
+-- Zig
+Plug("ziglang/zig.vim")
 -- Misc
 Plug("moll/vim-bbye")
 Plug("petertriho/nvim-scrollbar")
 Plug("kevinhwang91/nvim-hlslens")
-Plug("ziglang/zig.vim")
 -- Theme
-Plug("EdenEast/nightfox.nvim")
 Plug("folke/tokyonight.nvim", { ["branch"] = "main" })
-Plug("vim-crystal/vim-crystal")
 
+-- AI
 Plug("github/copilot.vim")
 Plug("CopilotC-Nvim/CopilotChat.nvim")
+
 vim.call("plug#end")
 
 require("plugins.theme")
