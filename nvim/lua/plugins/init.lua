@@ -69,6 +69,7 @@ vim.call("plug#end")
 
 require("plugins.theme")
 require("plugins.treesitter")
+require("plugins.nvim-ts-autotag")
 require("plugins.illuminate")
 require("plugins.nvim-tree")
 require("plugins.tabularize")
