@@ -47,6 +47,7 @@ g.ale_linters = {
   vim = { "vint" },
   vue = { "prettier", "volar", "eslint", "stylelint" },
   yaml = { "yamllint" },
+  zig = { "zls" },
 }
 
 -- Do not lint or fix minified files.

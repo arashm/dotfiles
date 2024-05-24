@@ -52,8 +52,6 @@ Plug("Shougo/context_filetype.vim")
 -- Ruby
 Plug("tpope/vim-rails")
 Plug("vim-test/vim-test")
--- Zig
-Plug("ziglang/zig.vim")
 -- Misc
 Plug("moll/vim-bbye")
 Plug("petertriho/nvim-scrollbar")
