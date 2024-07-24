@@ -5,14 +5,16 @@ local inoremap = h.inoremap
 -- COC will install these extensions if they are missing.
 -- These are the extensions that I want on every machine I have by default.
 vim.g.coc_global_extensions = {
-  "coc-lists",
+  "@hexuhua/coc-copilot",
   "coc-css",
-  "coc-json",
   "coc-html",
-  "coc-yaml",
+  "coc-json",
+  "coc-lists",
+  "coc-marketplace",
   "coc-snippets",
-  "coc-tsserver",
   "coc-solargraph",
+  "coc-tsserver",
+  "coc-yaml",
 }
 
 function _G.show_docs()
