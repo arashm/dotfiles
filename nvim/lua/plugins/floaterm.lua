@@ -7,5 +7,8 @@ vim.g.floaterm_keymap_prev = "<F8>"
 vim.g.floaterm_keymap_next = "<F9>"
 vim.g.floaterm_keymap_toggle = "<F12>"
 vim.g.floaterm_title = "Terminal: $1/$2"
+vim.g.floaterm_width = 0.9
+vim.g.floaterm_height = 0.9
 
 nnoremap("<leader>G", "<cmd>FloatermNew lazygit<CR>")
+nnoremap("<F11>", "<cmd>FloatermNew lazygit<CR>")
