@@ -7,12 +7,8 @@
     },
     "crystal": {
       "command": "crystalline",
-      "args": [
-        "--stdio"
-      ],
-      "filetypes": [
-        "crystal"
-      ],
+      "args": ["--stdio"],
+      "filetypes": ["crystal"],
       "rootPatterns": ["shard.yml"]
     }
   },
@@ -21,4 +17,5 @@
   "html.format.templating": true,
   "html.filetypes": ["html", "erb", "eruby"],
   "html.format.enable": true,
+  "css.validate": false
 }
