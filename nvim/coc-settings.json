@@ -10,6 +10,31 @@
       "args": ["--stdio"],
       "filetypes": ["crystal"],
       "rootPatterns": ["shard.yml"]
+    },
+    "ruby-lsp": {
+      "command": "ruby-lsp",
+      "initializationOptions": {
+        "experimentalFeaturesEnabled": false,
+        "enabledFeatures": [
+          "documentSymbols",
+          "documentLink",
+          "hover",
+          "foldingRanges",
+          "selectionRanges",
+          "semanticHighlighting",
+          "documentHighlight",
+          "inlayHint",
+          "completion",
+          "completionResolve",
+          "codeLens",
+          "definition",
+          "showSyntaxTree",
+          "workspaceSymbols",
+          "signatureHelp"
+        ],
+        "formatter": "false"
+      },
+      "filetypes": ["ruby", "erb"]
     }
   },
   "snippets.ultisnips.pythonPrompt": false,
