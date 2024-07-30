@@ -15,15 +15,12 @@ g.ale_ruby_rubocop_auto_correct_all = 1
 g.ale_sign_error = "😞"
 g.ale_sign_warning = "😐"
 g.ale_linter_aliases = { vue = { "vue", "javascript", "scss" } }
-g.ale_sign_column_always = 1
 g.ale_rust_cargo_use_clippy = 1
 g.ale_sign_column_always = 1
-g.ale_rust_cargo_use_clippy = 1
 g.ale_fixers = {
   ["*"] = { "remove_trailing_lines", "trim_whitespace" },
   c = { "clang-format" },
   css = { "prettier", "stylelint" },
-  coffeescript = { "coffee" },
   eruby = { "htmlbeautifier", "erblint" },
   fish = { "fish_indent" },
   html = { "prettier" },
