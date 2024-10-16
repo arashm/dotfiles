@@ -16,7 +16,6 @@ if status --is-interactive
 
     alias grep="grep --color=auto"
     alias less="bat"
-    alias open='xdg-open'
     alias tmux='tmux -2'
     alias s='sudo'
     alias p='sudo pacman'
