@@ -34,6 +34,7 @@ Plug("godlygeek/tabular")
 Plug("arthurxavierx/vim-caser")
 Plug("gcmt/wildfire.vim")
 Plug("stevearc/aerial.nvim")
+Plug("echasnovski/mini.diff")
 -- Telescope
 Plug("nvim-telescope/telescope.nvim")
 Plug("fannheyward/telescope-coc.nvim")
@@ -53,6 +54,8 @@ Plug("Shougo/context_filetype.vim")
 -- Ruby
 Plug("tpope/vim-rails")
 Plug("vim-test/vim-test")
+-- Markdown
+Plug("MeanderingProgrammer/render-markdown.nvim")
 -- Misc
 Plug("moll/vim-bbye")
 Plug("petertriho/nvim-scrollbar")
@@ -62,7 +65,8 @@ Plug("esensar/nvim-dev-container")
 Plug("folke/tokyonight.nvim", { ["branch"] = "main" })
 -- AI
 Plug("github/copilot.vim")
-Plug("CopilotC-Nvim/CopilotChat.nvim")
+Plug("ravitemer/mcphub.nvim")
+Plug("olimorris/codecompanion.nvim")
 
 vim.call("plug#end")
 
@@ -97,6 +101,8 @@ require("plugins.fugitive")
 require("plugins.nvim-scrollbar")
 require("plugins.nvim-hlslens")
 require("plugins.devcontainer")
-require("plugins.copilot-chat")
+require("plugins.render-markdown")
+require("plugins.mini-diff")
+require("plugins.codecompanion")
 
 require("nvim-lastplace").setup({})
