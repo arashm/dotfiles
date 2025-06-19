@@ -22,7 +22,7 @@ if status --is-interactive
     alias pss='pacman -Ss'
     alias pu='sudo pacman -Syu'
     alias y='paru'
-    alias yu='paru -Syu'
+    alias yu='paru -Syu --assume-installed npm --assume-installed gnome-common --assume-installed cargo --assume-installed yarn --assume-installed rustup --assume-installed zig'
     alias yss='paru -Ss'
     alias c='clear'
     alias vi='nvim'
