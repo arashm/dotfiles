@@ -34,7 +34,7 @@ if status --is-interactive
     mise activate fish | source
 end
 
-set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts (yarn global bin) $HOME/Public/flutter/bin $PATH
+set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts $HOME/Public/flutter/bin $PATH
 
 bind \cb fzf_ctrl_b
 bind \cf fzf_ctrl_f
