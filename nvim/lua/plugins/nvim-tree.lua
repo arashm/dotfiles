@@ -1,4 +1,3 @@
-local view = require("nvim-tree.view")
 local lib = require("nvim-tree.lib")
 local api = require("nvim-tree.api")
 local h = require("helpers")
