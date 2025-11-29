@@ -36,9 +36,6 @@ end
 
 set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts $HOME/Public/flutter/bin $PATH
 
-bind \cb fzf_ctrl_b
-bind \cf fzf_ctrl_f
-
 # Greetings!
 function fish_greeting
     figlet ArashM
