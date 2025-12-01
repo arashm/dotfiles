@@ -35,6 +35,12 @@
         "formatter": "false"
       },
       "filetypes": ["ruby", "erb"]
+    },
+    "herb": {
+      "command": "herb-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["eruby", "erb"],
+      "rootPatterns": [".git", "Gemfile"]
     }
   },
   "snippets.ultisnips.pythonPrompt": false,
