@@ -1,47 +1,50 @@
-require("nvim-treesitter.configs").setup({
-  -- A list of parser names, or "all"
-  ensure_installed = {
-    "ruby",
-    "embedded_template",
-    "html",
-    "lua",
-    "javascript",
-    "vue",
-    "scss",
-    "yaml",
-    "json",
-    "gitcommit",
-    "gitignore",
-    "markdown",
-    "markdown_inline",
-    "dockerfile",
-    "sql",
-    "bash",
-  },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  auto_install = true,
-
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-  matchup = {
-    enable = true,
-  },
-  endwise = {
-    enable = true,
-  },
-  embedded_template = {
-    enable = true,
-  },
+require('nvim-treesitter').setup()
+require('nvim-treesitter').install({
+  "ruby",
+  "embedded_template",
+  "html",
+  "lua",
+  "javascript",
+  "vue",
+  "scss",
+  "yaml",
+  "json",
+  "gitcommit",
+  "gitignore",
+  "markdown",
+  "markdown_inline",
+  "dockerfile",
+  "sql",
+  "bash",
+  "zig",
 })
+
+
+local ignore_filetypes = {
+  'checkhealth',
+  'lazy',
+  'mason',
+}
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true }),
+  desc = 'Enable treesitter highlighting and indentation',
+  callback = function(event)
+    if vim.tbl_contains(ignore_filetypes, event.match) then
+      return
+    end
+
+    local lang = vim.treesitter.language.get_lang(event.match) or event.match
+    local buf = event.buf
+
+    -- Start highlighting immediately (works if parser exists)
+    pcall(vim.treesitter.start, buf, lang)
+
+    -- Enable treesitter indentation
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+    -- Install missing parsers (async, no-op if already installed)
+    require('nvim-treesitter').install({ lang })
+  end,
+})
+vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"

@@ -3,7 +3,8 @@ local Plug = vim.fn["plug#"]
 vim.call("plug#begin", "~/.config/nvim/plugged")
 
 -- VIM
-Plug("nvim-lua/plenary.nvim")
+Plug("nvim-lua/plenary.nvim", { ["branch"] = "master" })
+Plug("nvim-treesitter/nvim-treesitter-context")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug("RRethy/nvim-treesitter-endwise")
 Plug("JoosepAlviste/nvim-ts-context-commentstring")
