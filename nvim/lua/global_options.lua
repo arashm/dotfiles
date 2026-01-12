@@ -47,8 +47,6 @@ set.updatetime = 300
 wo.signcolumn = "yes"
 g.loaded_python_provider = 0
 g.loaded_perl_provider = 0
-g.ruby_host_prog = vim.env.HOME .. "/.rbenv/shims/neovim-ruby-host"
--- g.node_host_prog = vim.env.HOME .. "/.asdf/shims/neovim-node-host"
 g.indent_guides_auto_colors = 0
 g.buftabline_indicators = 1
 set.shortmess:append("filmnrxoOtT")
