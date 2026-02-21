@@ -1,6 +1,6 @@
 lua require('global_options')
 lua require('global_mappings')
-lua require('plugins')
+lua require('config.lazy')
 
 " My system based specific options that will rewrite the ones here
 lua pcall(require, "local_options")

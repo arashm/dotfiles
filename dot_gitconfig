@@ -2,6 +2,8 @@
   name = Arash Mousavi
   email = me@amousavi.dev
   signingkey = ~/.ssh/id_ed25519_sign_key.pub
+[includeIf "gitdir:~/Repos/companies/Buzzjective/"]
+    path = ~/.gitconfig-buzzjective
 [color]
   ui = auto
   diff = auto

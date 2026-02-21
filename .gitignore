@@ -1,11 +1,7 @@
-/tags
-node_modules/
-TEMP~*
-.NERDTreeBookmarks
-.agignore
-/.yardoc
-/nvim/plugged/*
-/nvim/lua/local_options.lua
-/fish/completions
-/fish/fish_variables
-/fish/conf.d
+# Neovim local overrides (machine-specific)
+/dot_config/nvim/lua/local_options.lua
+
+# Fish auto-generated files
+/dot_config/private_fish/completions
+/dot_config/private_fish/fish_variables
+/dot_config/private_fish/conf.d

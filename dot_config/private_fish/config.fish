@@ -2,12 +2,8 @@ set -gx EDITOR nvim
 set -gx GEM_EDITOR nvim
 set -gx LESSOPEN "| /usr/bin/src-hilite-lesspipe.sh %s"
 set -gx LESS ' -R '
-# set -gx TERM xterm-256color
 set -gx GOPATH $HOME/.gocode
-set -gx PASSWORD_STORE_DIR $HOME/.config/password-store
 set -U FZF_TMUX 1
-set -gx ANDROID_HOME $HOME/Public/android_sdk/
-set -gx ANDROID_SDK_ROOT $HOME/Public/android_sdk/
 
 if status --is-interactive
     set -gx LANG en_US.utf-8
@@ -28,13 +24,17 @@ if status --is-interactive
     alias vi='nvim'
     alias vim='nvim'
 
-    ~/.rbenv/bin/rbenv init - fish | source
     zoxide init fish | source
     atuin init fish | source
     mise activate fish | source
 end
 
-set -x PATH $HOME/.rbenv/shims $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.mix/escripts $HOME/Public/flutter/bin $PATH
+set -x PATH $HOME/.local/bin $HOME/.cargo/bin $HOME/.mix/escripts $PATH
+
+# Source machine-local secrets (not tracked by chezmoi)
+if test -f ~/.config/fish/secrets.fish
+    source ~/.config/fish/secrets.fish
+end
 
 # Greetings!
 function fish_greeting

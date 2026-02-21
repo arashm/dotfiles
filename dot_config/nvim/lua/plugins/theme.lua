@@ -1,5 +1,4 @@
 vim.cmd([[
-color tokyonight-moon
 colorscheme tokyonight-moon
 set termguicolors
 set nospell
