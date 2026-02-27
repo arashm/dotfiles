@@ -3,7 +3,7 @@ function __user_host
     if [ (id -u) = 0 ]
         echo -n (set_color --bold red)
     else if set -q SSH_CLIENT; or set -q SSH_TTY
-        echo -n (set_color --bold yellow)
+        echo -n (set_color --bold 62A)
     else
         echo -n (set_color --bold green)
     end
