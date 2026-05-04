@@ -5,3 +5,6 @@
 /dot_config/private_fish/completions
 /dot_config/private_fish/fish_variables
 /dot_config/private_fish/conf.d
+
+# Neovim plugin lock file (machine-specific)
+/dot_config/nvim/lazy_lock.json

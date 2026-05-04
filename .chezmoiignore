@@ -1,2 +1,3 @@
 LICENSE
 alacritty.yml
+.config/nvim/lazy-lock.json
