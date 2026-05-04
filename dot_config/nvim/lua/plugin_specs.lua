@@ -11,16 +11,18 @@ return {
   },
   -- VIM
   { "nvim-lua/plenary.nvim", branch = "master" },
-  "nvim-treesitter/nvim-treesitter-context",
   {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    lazy = false,
-    build = ":TSUpdate",
+    "romus204/tree-sitter-manager.nvim",
+    dependencies = {}, -- tree-sitter CLI must be installed system-wide
     config = function()
-      require("plugins.treesitter")
-    end,
+      require("tree-sitter-manager").setup({
+        -- Default Options
+        -- ensure_installed = {}, -- list of parsers to install at the start of a neovim session
+        auto_install = true, -- if enabled, install missing parsers when editing a new file
+      })
+    end
   },
+  "nvim-treesitter/nvim-treesitter-context",
   "RRethy/nvim-treesitter-endwise",
   "JoosepAlviste/nvim-ts-context-commentstring",
   "kana/vim-textobj-user",
