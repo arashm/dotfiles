@@ -245,19 +245,6 @@ return {
   },
   -- AI
   "github/copilot.vim",
-  "ravitemer/mcphub.nvim",
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    build = "npm install -g mcp-hub@latest",
-    config = function()
-      require("plugins.codecompanion")
-      require("mcphub").setup()
-    end,
-  },
   {
     "greggh/claude-code.nvim",
     dependencies = {
