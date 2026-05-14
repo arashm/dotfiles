@@ -75,9 +75,9 @@ return {
   },
   -- Editor Helper Tools
   {
-    "phaazon/hop.nvim",
+    url = "https://codeberg.org/andyg/leap.nvim",
     config = function()
-      require("plugins.hop")
+      require("plugins.leap")
     end,
   },
   {

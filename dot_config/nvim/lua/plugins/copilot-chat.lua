@@ -1,4 +1,3 @@
-require("hop").setup()
 local h = require("helpers")
 local nnoremap = h.nnoremap
 
