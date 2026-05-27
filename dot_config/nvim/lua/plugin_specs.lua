@@ -206,7 +206,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     config = function()
-      require("plugins.autotag")
+      require("plugins.nvim-ts-autotag")
     end,
   },
   "Shougo/context_filetype.vim",
