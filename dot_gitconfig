@@ -23,7 +23,7 @@
   pulled = log --pretty=format:\"%h %ad | %s%d [%an]\" --date=short --reverse --no-merges --stat @{1}..
   pull = pull --rebase --stat
 [push]
-  default = tracking
+  default = current
   auto-setup-remote = true
   autoSetupRemote = true
 [core]
