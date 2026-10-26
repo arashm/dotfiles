@@ -85,7 +85,13 @@ return {
       require("plugins.illuminate")
     end,
   },
-  "mg979/vim-visual-multi",
+  {
+    "jake-stewart/multicursor.nvim",
+    branch = "1.0",
+    config = function()
+      require("plugins.multicursor")
+    end,
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
