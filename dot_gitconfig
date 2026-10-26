@@ -30,7 +30,12 @@
   editor = nvim
   excludesFile = ~/.gitignore
   ignorecase = true
-  pager = hunk pager
+[pager]
+  diff = hunk pager
+  log = delta
+  reflog = delta
+  shortlog = delta
+  show = delta
 [giggle]
   main-window-view = FileView
   history-view-vpane-position = 262
