@@ -10,7 +10,6 @@ g.ale_virtualtext_cursor = 1
 g.ale_virtualtext_prefix = "▸ "
 g.ale_lint_on_save = 1
 g.ale_fix_on_save = 1
-g.ale_rust_rls_toolchain = "stable"
 g.ale_ruby_rubocop_auto_correct_all = 1
 g.ale_sign_error = "😞"
 g.ale_sign_warning = "😐"
@@ -41,7 +40,7 @@ g.ale_linters = {
   javascript = { "eslint" },
   ruby = { "rubocop", "cspell" },
   -- ruby = { "standardrb", "cspell" },
-  rust = { "rls" },
+  rust = { "analyzer" },
   sql = { "sqlfluff" },
   vim = { "vint" },
   vue = { "prettier", "volar", "eslint", "stylelint" },
@@ -55,9 +54,11 @@ g.ale_pattern_options = {
   [".min.css$"] = { ale_linters = {}, ale_fixers = {} },
 }
 
-vim.fn.system("bundle show rubucop")
-if v.shell_error == 0 then
-  g.ale_ruby_rubocop_executable = "bundle"
+if vim.fn.filereadable("Gemfile") == 1 then
+  vim.fn.system("bundle info rubocop")
+  if v.shell_error == 0 then
+    g.ale_ruby_rubocop_executable = "bundle"
+  end
 end
 
 -- g.ale_ruby_rubocop_executable = "bundle"

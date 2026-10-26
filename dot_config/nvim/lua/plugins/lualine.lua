@@ -1,6 +1,5 @@
 local function current_date()
-  result = vim.fn.system("date +%F")
-  return string.gsub(result, "\n", "")
+  return os.date("%F")
 end
 
 require("lualine").setup({

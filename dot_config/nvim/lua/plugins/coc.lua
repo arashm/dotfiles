@@ -19,11 +19,11 @@ vim.g.coc_global_extensions = {
 function _G.show_docs()
   local cw = vim.fn.expand("<cword>")
   if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
-    cmd("h " .. cw)
-  elseif vim.api.nvim_eval("coc#rpc#ready()") then
+    vim.cmd("h " .. cw)
+  elseif vim.fn["coc#rpc#ready"]() == 1 then
     vim.fn.CocActionAsync("doHover")
   else
-    cmd("!" .. vim.o.keywordprg .. " " .. cw)
+    vim.cmd("!" .. vim.o.keywordprg .. " " .. cw)
   end
 end
 

@@ -25,7 +25,6 @@ return {
   "nvim-treesitter/nvim-treesitter-context",
   "RRethy/nvim-treesitter-endwise",
   "JoosepAlviste/nvim-ts-context-commentstring",
-  "kana/vim-textobj-user",
   "kyazdani42/nvim-web-devicons",
   {
     "ethanholz/nvim-lastplace",

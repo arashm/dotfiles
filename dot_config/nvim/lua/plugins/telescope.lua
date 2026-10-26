@@ -4,7 +4,6 @@ local nnoremap = h.nnoremap
 local vnoremap = h.vnoremap
 
 require("telescope").setup({
-  layout_strategy = "horizontal",
   defaults = {
     layout_config = { prompt_position = "top" },
     sorting_strategy = "ascending",

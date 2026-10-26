@@ -11,7 +11,6 @@ set.clipboard = "unnamedplus" -- Use clipboard as register
 set.mouse = "a" -- Automatically enable mouse usage
 set.mousehide = true -- Hide the mouse cursor while typing
 set.history = 1000 -- Store a ton of history (default is 20)
-set.spell = true -- Spell checking on
 set.hidden = true -- Allow buffer switching without saving
 set.backup = true -- Backups are nice
 set.undofile = true -- So is persistent undo
@@ -39,7 +38,6 @@ set.textwidth = 0 -- Do wrap long lines after paste
 set.laststatus = 2 -- Always show status line
 set.autochdir = false
 set.showtabline = 2 -- Always show the Tabline
-set.re = 1 -- Fix syntax highlighting of Ruby RegEx
 set.termguicolors = true -- enable 24bit true color
 set.updatetime = 300
 -- set.tabstop = 2
@@ -47,14 +45,7 @@ set.updatetime = 300
 wo.signcolumn = "yes"
 g.loaded_python_provider = 0
 g.loaded_perl_provider = 0
-g.indent_guides_auto_colors = 0
-g.buftabline_indicators = 1
 set.shortmess:append("filmnrxoOtT")
-
-vim.cmd([[
-  syntax on
-  filetype plugin indent on
-]])
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "eruby.yaml",

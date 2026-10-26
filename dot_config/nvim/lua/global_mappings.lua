@@ -30,11 +30,6 @@ noremap("X", ":Bdelete!<CR>", { desc = "Force close current buffer" })
 
 noremap("<Leader>v", ":vsp<CR>", { desc = "Open a vertical pane" })
 
--- Quicker window movement
-nnoremap("<C-j>", "<C-w>j", { desc = "Jump to bottom window" })
-nnoremap("<C-k>", "<C-w>k", { desc = "Jump to top window" })
-nnoremap("<C-h>", "<C-w>h", { desc = "Jump to left window" })
-nnoremap("<C-l>", "<C-w>l", { desc = "Jump to right window" })
 nnoremap("<C-left>", "1<C-w><", { desc = "Resize window" })
 nnoremap("<C-right>", "<C-w>>", { desc = "Resize window" })
 
