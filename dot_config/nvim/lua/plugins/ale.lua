@@ -5,7 +5,7 @@ local nnoremap = h.nnoremap
 
 nnoremap("<Leader>f", ":ALEFix<CR>", { desc = "Fix code style" })
 
-g.ale_disable_lsp = 0
+g.ale_disable_lsp = 1
 g.ale_virtualtext_cursor = 1
 g.ale_virtualtext_prefix = "▸ "
 g.ale_lint_on_save = 1

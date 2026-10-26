@@ -174,7 +174,6 @@ return {
       require("plugins.coc")
     end,
   },
-  "SirVer/ultisnips",
   "honza/vim-snippets",
   -- Git
   {

@@ -44,8 +44,12 @@
     }
   },
   "snippets.ultisnips.pythonPrompt": false,
-  "zig.zls.path": "zls",
+  "zig.zls.path": "/home/arash/.config/coc/extensions/coc-zls-data/zls_install/zls",
   "html.format.templating": true,
   "html.filetypes": ["html", "erb", "eruby"],
-  "css.validate": false
+  "css.validate": false,
+  "json.schemaDownload.trustedDomains": {
+    "https://www.schemastore.org": true,
+    "https://json.schemastore.org": true
+  }
 }
