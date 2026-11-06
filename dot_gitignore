@@ -5,3 +5,6 @@ TEMP~*
 .agignore
 /.yardoc
 **/.claude/settings.local.json
+.wtp.yml
+.linear.toml
+.worktreeinclude
