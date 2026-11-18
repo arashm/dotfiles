@@ -233,9 +233,7 @@ return {
   "moll/vim-bbye",
   {
     "petertriho/nvim-scrollbar",
-    config = function()
-      require("plugins.nvim-scrollbar")
-    end,
+    opts = {}, -- v2: diagnostic + search providers are on by default
   },
   {
     "kevinhwang91/nvim-hlslens",
